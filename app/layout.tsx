@@ -31,7 +31,9 @@ export default function RootLayout({
       <body>
         <GridBackground />
         <TopBar />
-        {children}
+        <div className="mx-auto max-w-[1440px] border-2 border-red-500">
+          {children}
+        </div>
       </body>
     </html>
   );
