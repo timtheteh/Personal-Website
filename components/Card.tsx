@@ -26,6 +26,7 @@ export default function Card({
   const cardRef = useRef<HTMLDivElement>(null);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
+  const [isMouseDown, setIsMouseDown] = useState(false);
 
   // Calculate the effective light angle based on tilt
   // The tilt affects the perceived light direction
@@ -42,8 +43,28 @@ export default function Card({
     return (baseAngle + angleShift * (effectiveShift / 45)) % 360;
   };
 
+  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!draggable) return;
+    setIsMouseDown(true);
+    // Immediately calculate tilt on mouse down
+    if (cardRef.current) {
+      const rect = cardRef.current.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      const x = (e.clientX - centerX) / (rect.width / 2);
+      const y = (e.clientY - centerY) / (rect.height / 2);
+      const clampedX = Math.max(-1, Math.min(1, x));
+      const clampedY = Math.max(-1, Math.min(1, y));
+      setTilt({
+        x: clampedX * maxTilt,
+        y: -clampedY * maxTilt,
+      });
+      setIsDragging(true);
+    }
+  };
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!draggable || !cardRef.current) return;
+    if (!draggable || !cardRef.current || !isMouseDown) return;
     
     const rect = cardRef.current.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
@@ -61,12 +82,39 @@ export default function Card({
       x: clampedX * maxTilt,
       y: -clampedY * maxTilt, // Invert Y for natural tilt feel
     });
-    setIsDragging(true);
+  };
+
+  const handleMouseUp = () => {
+    setIsMouseDown(false);
+    setTilt({ x: 0, y: 0 });
+    setIsDragging(false);
   };
 
   const handleMouseLeave = () => {
-    setTilt({ x: 0, y: 0 });
-    setIsDragging(false);
+    if (isMouseDown) {
+      setIsMouseDown(false);
+      setTilt({ x: 0, y: 0 });
+      setIsDragging(false);
+    }
+  };
+
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (!draggable || !cardRef.current || e.touches.length === 0) return;
+    
+    const touch = e.touches[0];
+    const rect = cardRef.current.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    const x = (touch.clientX - centerX) / (rect.width / 2);
+    const y = (touch.clientY - centerY) / (rect.height / 2);
+    const clampedX = Math.max(-1, Math.min(1, x));
+    const clampedY = Math.max(-1, Math.min(1, y));
+    
+    setTilt({
+      x: clampedX * maxTilt,
+      y: -clampedY * maxTilt,
+    });
+    setIsDragging(true);
   };
 
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
@@ -90,7 +138,6 @@ export default function Card({
       x: clampedX * maxTilt,
       y: -clampedY * maxTilt,
     });
-    setIsDragging(true);
   };
 
   const handleTouchEnd = () => {
@@ -136,9 +183,13 @@ export default function Card({
 
   return (
     <div 
+      className="select-none"
       style={{ perspective: '1000px', touchAction: 'none' }}
+      onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
+      onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseLeave}
+      onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
