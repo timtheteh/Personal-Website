@@ -78,7 +78,7 @@ body {
   );
   -webkit-mask-size: 100% 400%;
   mask-size: 100% 400%;
-  animation: intensity-wave-vertical 24s ease-in-out infinite alternate;
+  animation: intensity-wave-vertical 24s linear infinite alternate;
   will-change: mask-position, -webkit-mask-position;
 }
 
@@ -115,7 +115,7 @@ body {
   );
   -webkit-mask-size: 400% 100%;
   mask-size: 400% 100%;
-  animation: intensity-wave-horizontal 30s ease-in-out infinite alternate;
+  animation: intensity-wave-horizontal 30s linear infinite alternate;
   will-change: mask-position, -webkit-mask-position;
 }
 
