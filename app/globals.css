@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+/* Typography Styles */
+h1 {
+  @apply text-4xl font-bold tracking-tight;
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+h2 {
+  @apply text-3xl font-semibold tracking-tight;
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+h3 {
+  @apply text-2xl font-semibold tracking-tight;
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+h4 {
+  @apply text-xl font-semibold tracking-tight;
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+h5 {
+  @apply text-lg font-semibold;
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+h6 {
+  @apply text-base font-semibold;
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+p {
+  @apply text-base leading-7;
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+code {
+  @apply rounded bg-gray-100 px-1.5 py-0.5 text-sm;
+  font-family: var(--font-jetbrains-mono), monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  code {
+    @apply bg-gray-800;
+  }
+}
+
+pre {
+  @apply rounded-lg bg-gray-100 p-4 overflow-x-auto;
+  font-family: var(--font-jetbrains-mono), monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  pre {
+    @apply bg-gray-800;
+  }
+}
+
+a {
+  @apply text-blue-600 hover:text-blue-800 underline-offset-4 hover:underline;
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  a {
+    @apply text-blue-400 hover:text-blue-300;
+  }
+}
+
+blockquote {
+  @apply border-l-4 border-gray-300 pl-4 italic;
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  blockquote {
+    @apply border-gray-600;
+  }
+}
+
+ul, ol {
+  @apply list-inside space-y-2;
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+li {
+  @apply leading-7;
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
