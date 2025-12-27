@@ -3,15 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #2C2C2C;
+  --foreground: #ededed;
 }
 
 body {
@@ -57,47 +50,23 @@ p {
 }
 
 code {
-  @apply rounded bg-gray-100 px-1.5 py-0.5 text-sm;
+  @apply rounded bg-gray-800 px-1.5 py-0.5 text-sm;
   font-family: var(--font-jetbrains-mono), monospace;
-}
-
-@media (prefers-color-scheme: dark) {
-  code {
-    @apply bg-gray-800;
-  }
 }
 
 pre {
-  @apply rounded-lg bg-gray-100 p-4 overflow-x-auto;
+  @apply rounded-lg bg-gray-800 p-4 overflow-x-auto;
   font-family: var(--font-jetbrains-mono), monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  pre {
-    @apply bg-gray-800;
-  }
-}
-
 a {
-  @apply text-blue-600 hover:text-blue-800 underline-offset-4 hover:underline;
+  @apply text-blue-400 hover:text-blue-300 underline-offset-4 hover:underline;
   font-family: var(--font-inter), system-ui, sans-serif;
-}
-
-@media (prefers-color-scheme: dark) {
-  a {
-    @apply text-blue-400 hover:text-blue-300;
-  }
 }
 
 blockquote {
-  @apply border-l-4 border-gray-300 pl-4 italic;
+  @apply border-l-4 border-gray-600 pl-4 italic;
   font-family: var(--font-inter), system-ui, sans-serif;
-}
-
-@media (prefers-color-scheme: dark) {
-  blockquote {
-    @apply border-gray-600;
-  }
 }
 
 ul, ol {
