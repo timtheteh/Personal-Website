@@ -32,6 +32,41 @@ const resumeItems = [
     date: '2015 - 2019',
     description: 'Bachelor of Science in Computer Science.',
   },
+  {
+    id: '5',
+    title: 'Computer Science Degree',
+    subtitle: 'University Name',
+    date: '2015 - 2019',
+    description: 'Bachelor of Science in Computer Science.',
+  },
+  {
+    id: '6',
+    title: 'Computer Science Degree',
+    subtitle: 'University Name',
+    date: '2015 - 2019',
+    description: 'Bachelor of Science in Computer Science.',
+  },
+  {
+    id: '7',
+    title: 'Computer Science Degree',
+    subtitle: 'University Name',
+    date: '2015 - 2019',
+    description: 'Bachelor of Science in Computer Science.',
+  },
+  {
+    id: '8',
+    title: 'Computer Science Degree',
+    subtitle: 'University Name',
+    date: '2015 - 2019',
+    description: 'Bachelor of Science in Computer Science.',
+  },
+  {
+    id: '9',
+    title: 'Computer Science Degree',
+    subtitle: 'University Name',
+    date: '2015 - 2019',
+    description: 'Bachelor of Science in Computer Science.',
+  },
 ];
 
 export default function Home() {
@@ -66,7 +101,7 @@ export default function Home() {
 
       {/* Resume Section */}
       <section id="resume" className="mt-20 tablet:mt-24 desktop:mt-32">
-        <h2 className="text-3xl font-bold mb-8 tablet:mb-12">Resume</h2>
+        <h2 className="text-5xl font-bold mb-8 tablet:mb-12">Resume</h2>
         <Timeline items={resumeItems} />
       </section>
     </main>
