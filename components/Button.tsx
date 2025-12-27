@@ -8,6 +8,7 @@ interface ButtonProps {
   variant?: 'brandcolour1' | 'brandcolour2';
   className?: string;
   href?: string;
+  showArrow?: boolean;
 }
 
 export default function Button({
@@ -16,6 +17,7 @@ export default function Button({
   variant = 'brandcolour1',
   className = '',
   href,
+  showArrow = true,
 }: ButtonProps) {
   const baseClasses = 'inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all duration-200 hover:scale-105 active:scale-95';
   
@@ -49,7 +51,7 @@ export default function Button({
   const content = (
     <>
       {children}
-      <ArrowIcon />
+      {showArrow && <ArrowIcon />}
     </>
   );
 
