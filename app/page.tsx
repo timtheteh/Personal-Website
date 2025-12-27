@@ -108,6 +108,28 @@ export default function Home() {
         </div>
       </section>
 
+      {/* About Section */}
+      <section id="about" className="mt-20 tablet:mt-24 desktop:mt-32">
+        <div className="flex flex-col desktop:flex-row desktop:justify-between gap-8 desktop:gap-12 items-center">
+          {/* Column 1: Image (placeholder) - Desktop first, Mobile/Tablet second */}
+          <div className="w-full desktop:w-[40%] flex items-center justify-center order-2 desktop:order-1">
+            <div className="w-full aspect-square max-w-[400px] rounded-2xl bg-white/10 border-2 border-dashed border-white/30 flex items-center justify-center">
+              <span className="text-foreground/50">Image placeholder</span>
+            </div>
+          </div>
+          
+          {/* Column 2: Card - Desktop second, Mobile/Tablet first */}
+          <div className="w-full desktop:w-[80%] order-1 desktop:order-2">
+            <Card className="p-8">
+              <h2 className="text-3xl font-bold mb-4">About Me</h2>
+              <p className="text-foreground/70">
+                This is the about section content. You can add your personal information, background, and story here.
+              </p>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* Resume Section */}
       <section id="resume" className="mt-20 tablet:mt-24 desktop:mt-32">
         <h2 className="text-5xl font-bold mb-8 tablet:mb-12">Resume</h2>
