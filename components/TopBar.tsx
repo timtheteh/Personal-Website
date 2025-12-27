@@ -22,14 +22,16 @@ export default function TopBar() {
     if (targetElement) {
       // Get the top bar height (64px for tablet/desktop, 56px for mobile)
       const topBarHeight = window.innerWidth >= 768 ? 64 : 56;
+      // Additional margin for spacing (24px)
+      const additionalMargin = 24;
       
       // Calculate the position to scroll to
       const elementPosition = targetElement.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - topBarHeight;
+      const offsetPosition = elementPosition + window.pageYOffset - topBarHeight - additionalMargin;
       
       // Smooth scroll to the position
       window.scrollTo({
-        top: offsetPosition,
+        top: Math.max(0, offsetPosition), // Ensure we don't scroll to negative position
         behavior: 'smooth'
       });
     }
