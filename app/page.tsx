@@ -10,7 +10,7 @@ export default function Home() {
         <div className="w-full desktop:w-[80%]">
           <Card className="p-8">
             <h1 className="text-4xl font-bold">Timothy</h1>
-            <p className="mt-3 text-lg text-[#00B300]">
+            <p className="mt-3 text-lg text-brandcolour2">
               <TypewriterText
                 texts={[
                   'SOFTWARE ENGINEER',
