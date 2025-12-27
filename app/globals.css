@@ -14,8 +14,8 @@ body {
   position: relative;
 }
 
-body::before {
-  content: '';
+/* Base grid - static lines with subtle glow */
+.grid-base {
   position: fixed;
   top: 0;
   left: 0;
@@ -26,24 +26,27 @@ body::before {
       0deg,
       transparent,
       transparent 15px,
-      rgba(128, 255, 0, 0.6) 15px,
-      rgba(128, 255, 0, 0.6) 16px
+      rgba(128, 255, 0, 0.3) 15px,
+      rgba(128, 255, 0, 0.3) 16px
     ),
     repeating-linear-gradient(
       90deg,
       transparent,
       transparent 15px,
-      rgba(128, 255, 0, 0.6) 15px,
-      rgba(128, 255, 0, 0.6) 16px
+      rgba(128, 255, 0, 0.3) 15px,
+      rgba(128, 255, 0, 0.3) 16px
     );
   background-size: 16px 16px;
-  filter: blur(0.5px);
+  filter: drop-shadow(0 0 1px rgba(128, 255, 0, 0.5));
   pointer-events: none;
   z-index: 0;
+  /* Performance optimizations */
+  transform: translateZ(0);
+  contain: strict;
 }
 
-body::after {
-  content: '';
+/* Animated horizontal glow wave - affects horizontal lines */
+.grid-glow-horizontal {
   position: fixed;
   top: 0;
   left: 0;
@@ -56,7 +59,47 @@ body::after {
       transparent 15px,
       #80FF00 15px,
       #80FF00 16px
-    ),
+    );
+  background-size: 16px 16px;
+  filter: drop-shadow(0 0 6px rgba(128, 255, 0, 0.9)) drop-shadow(0 0 12px rgba(128, 255, 0, 0.5));
+  pointer-events: none;
+  z-index: 0;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 45%,
+    rgba(255,255,255,0.8) 50%,
+    transparent 55%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 45%,
+    rgba(255,255,255,0.8) 50%,
+    transparent 55%,
+    transparent 100%
+  );
+  -webkit-mask-size: 100% 400%;
+  mask-size: 100% 400%;
+  -webkit-mask-position: 0 0%;
+  mask-position: 0 0%;
+  animation: glow-wave-vertical 24s linear infinite alternate;
+  /* Performance optimizations */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: mask-position, -webkit-mask-position;
+  contain: layout style;
+}
+
+/* Animated vertical glow wave - affects vertical lines */
+.grid-glow-vertical {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
     repeating-linear-gradient(
       90deg,
       transparent,
@@ -65,9 +108,57 @@ body::after {
       #80FF00 16px
     );
   background-size: 16px 16px;
-  opacity: 0.3;
+  filter: drop-shadow(0 0 6px rgba(128, 255, 0, 0.9)) drop-shadow(0 0 12px rgba(128, 255, 0, 0.5));
   pointer-events: none;
   z-index: 0;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    transparent 45%,
+    rgba(255,255,255,0.8) 50%,
+    transparent 55%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    transparent 45%,
+    rgba(255,255,255,0.8) 50%,
+    transparent 55%,
+    transparent 100%
+  );
+  -webkit-mask-size: 400% 100%;
+  mask-size: 400% 100%;
+  -webkit-mask-position: 0% 0;
+  mask-position: 0% 0;
+  animation: glow-wave-horizontal 30s linear infinite alternate;
+  /* Performance optimizations */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: mask-position, -webkit-mask-position;
+  contain: layout style;
+}
+
+@keyframes glow-wave-vertical {
+  0% {
+    -webkit-mask-position: 0 -150%;
+    mask-position: 0 -150%;
+  }
+  100% {
+    -webkit-mask-position: 0 150%;
+    mask-position: 0 150%;
+  }
+}
+
+@keyframes glow-wave-horizontal {
+  0% {
+    -webkit-mask-position: -150% 0;
+    mask-position: -150% 0;
+  }
+  100% {
+    -webkit-mask-position: 150% 0;
+    mask-position: 150% 0;
+  }
 }
 
 body > * {
