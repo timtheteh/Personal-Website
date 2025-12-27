@@ -22,8 +22,8 @@ export default function Button({
   const baseClasses = 'inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all duration-200 hover:scale-105 active:scale-95';
   
   const variantClasses = {
-    brandcolour1: 'bg-brandcolour1 hover:bg-brandcolour1/90 text-[#2C2C2C]',
-    brandcolour2: 'bg-brandcolour2 hover:bg-brandcolour2/90 text-[#2C2C2C]',
+    brandcolour1: 'bg-[#2C2C2C] border-2 border-brandcolour1 text-brandcolour1 hover:bg-[#2C2C2C]/90',
+    brandcolour2: 'bg-[#2C2C2C] border-2 border-brandcolour2 text-brandcolour2 hover:bg-[#2C2C2C]/90',
   };
 
   const buttonClasses = `${baseClasses} ${variantClasses[variant]} ${className}`;
