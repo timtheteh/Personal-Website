@@ -1,6 +1,7 @@
 import Card from '@/components/Card';
 import TypewriterText from '@/components/TypewriterText';
 import Timeline from '@/components/Timeline';
+import Button from '@/components/Button';
 
 // Sample resume timeline data
 const resumeItems = [
@@ -89,6 +90,14 @@ export default function Home() {
             </p>
             <p className="mt-4 text-foreground/70">This is a liquid-glass card component.</p>
           </Card>
+          <div className="mt-6 flex flex-col tablet:flex-row gap-4">
+            <Button variant="brandcolour2" href="#contact">
+              Contact me
+            </Button>
+            <Button variant="brandcolour1" href="#about">
+              Learn more
+            </Button>
+          </div>
         </div>
         
         {/* Column 2: Image (placeholder) - 40% on desktop */}
