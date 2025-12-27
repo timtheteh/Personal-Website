@@ -19,7 +19,7 @@ export default function TopBar() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-brandcolour1 shadow-[0_0_30px_rgba(128,255,0,0.5)]">
-      <div className="container mx-auto px-4">
+      <div className="w-full px-4 tablet:px-6 desktop:px-8">
         <div className="h-14 tablet:h-16 desktop:h-16 flex items-center justify-between">
           {/* Brand Logo - Left Side */}
           <div className="flex items-center">
