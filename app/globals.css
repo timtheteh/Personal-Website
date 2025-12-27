@@ -79,3 +79,22 @@ li {
   font-family: var(--font-inter), system-ui, sans-serif;
 }
 
+/* Bounce animation for dropdown menu */
+@keyframes bounce-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  50% {
+    transform: translateY(2px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-bounce-in {
+  animation: bounce-in 0.4s ease-out;
+}
+
