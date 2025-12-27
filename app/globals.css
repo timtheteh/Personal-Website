@@ -12,6 +12,13 @@ body {
   background: var(--background);
   font-family: var(--font-inter), system-ui, sans-serif;
   position: relative;
+  padding-top: 56px; /* Height of fixed header on mobile */
+}
+
+@media (min-width: 768px) {
+  body {
+    padding-top: 64px; /* Height of fixed header on tablet/desktop */
+  }
 }
 
 /* Base grid - static lines with subtle glow */
