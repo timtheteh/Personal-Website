@@ -34,13 +34,29 @@ export default function TopBar() {
             {/* Hamburger Menu Icon - Mobile Only */}
             <button
               onClick={toggleMenu}
-              className="tablet:hidden flex flex-col gap-1.5 p-2"
+              className="tablet:hidden flex flex-col gap-1.5 p-2 relative w-8 h-8 justify-center items-center"
               aria-label="Menu"
               aria-expanded={isMenuOpen}
             >
-              <span className="w-6 h-0.5 bg-brandcolour1"></span>
-              <span className="w-6 h-0.5 bg-brandcolour1"></span>
-              <span className="w-6 h-0.5 bg-brandcolour1"></span>
+              <span
+                className={`w-6 h-0.5 bg-brandcolour1 transition-all duration-300 ease-in-out origin-center block ${
+                  isMenuOpen
+                    ? "rotate-45 absolute top-1/2 -translate-y-1/2"
+                    : "rotate-0"
+                }`}
+              ></span>
+              <span
+                className={`w-6 h-0.5 bg-brandcolour1 transition-all duration-300 ease-in-out origin-center block ${
+                  isMenuOpen ? "opacity-0" : "opacity-100"
+                }`}
+              ></span>
+              <span
+                className={`w-6 h-0.5 bg-brandcolour1 transition-all duration-300 ease-in-out origin-center block ${
+                  isMenuOpen
+                    ? "-rotate-45 absolute top-1/2 -translate-y-1/2"
+                    : "rotate-0"
+                }`}
+              ></span>
             </button>
 
             {/* Navigation Links - Tablet and Desktop Only */}
