@@ -9,6 +9,32 @@ export default function TopBar() {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    
+    // Close mobile menu if open
+    setIsMenuOpen(false);
+    
+    // Get the target element
+    const targetId = href.substring(1); // Remove the '#'
+    const targetElement = document.getElementById(targetId);
+    
+    if (targetElement) {
+      // Get the top bar height (64px for tablet/desktop, 56px for mobile)
+      const topBarHeight = window.innerWidth >= 768 ? 64 : 56;
+      
+      // Calculate the position to scroll to
+      const elementPosition = targetElement.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - topBarHeight;
+      
+      // Smooth scroll to the position
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   const navigationLinks = [
     { href: "#about", label: "About" },
     { href: "#resume", label: "Resume" },
@@ -65,7 +91,8 @@ export default function TopBar() {
                 <a
                   key={link.href}
                   href={link.href}
-                  className="text-foreground hover:text-brandcolour1 transition-colors"
+                  onClick={(e) => handleLinkClick(e, link.href)}
+                  className="text-foreground hover:text-brandcolour1 transition-colors cursor-pointer"
                 >
                   {link.label}
                 </a>
@@ -82,8 +109,8 @@ export default function TopBar() {
                 <a
                   key={link.href}
                   href={link.href}
-                  onClick={() => setIsMenuOpen(false)}
-                  className="text-foreground hover:text-brandcolour1 transition-colors py-2"
+                  onClick={(e) => handleLinkClick(e, link.href)}
+                  className="text-foreground hover:text-brandcolour1 transition-colors py-2 cursor-pointer"
                 >
                   {index + 1}. {link.label.toUpperCase()}
                 </a>
