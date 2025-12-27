@@ -62,14 +62,14 @@ export default function TopBar() {
         {isMenuOpen && (
           <div className="tablet:hidden pb-4 animate-bounce-in">
             <div className="flex flex-col gap-1 pt-4">
-              {navigationLinks.map((link) => (
+              {navigationLinks.map((link, index) => (
                 <a
                   key={link.href}
                   href={link.href}
                   onClick={() => setIsMenuOpen(false)}
                   className="text-foreground hover:text-brandcolour1 transition-colors py-2"
                 >
-                  {link.label}
+                  {index + 1}. {link.label.toUpperCase()}
                 </a>
               ))}
             </div>
