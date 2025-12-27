@@ -91,10 +91,10 @@ export default function Home() {
             <p className="mt-4 text-foreground/70">This is a liquid-glass card component.</p>
           </Card>
           <div className="mt-6 flex flex-row gap-4">
-            <Button variant="brandcolour2" href="#contact" showArrow={false} className="flex-1 desktop:flex-initial">
+            <Button variant="brandcolour2" href="#contact" showArrow={false} className="flex-1 tablet:flex-initial">
               Contact me
             </Button>
-            <Button variant="brandcolour1" href="#about" className="flex-1 desktop:flex-initial">
+            <Button variant="brandcolour1" href="#about" className="flex-1 tablet:flex-initial">
               Learn more
             </Button>
           </div>
