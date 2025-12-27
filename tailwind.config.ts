@@ -11,6 +11,7 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        brandcolour1: "#80FF00",
       },
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
