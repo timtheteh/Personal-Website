@@ -183,15 +183,15 @@ export default function Card({
 
   return (
     <div 
-      className="select-none"
-      style={{ perspective: '1000px', touchAction: 'none' }}
-      onMouseDown={handleMouseDown}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseLeave}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
+      className={draggable ? 'select-none' : ''}
+      style={{ perspective: '1000px', touchAction: draggable ? 'none' : 'auto' }}
+      onMouseDown={draggable ? handleMouseDown : undefined}
+      onMouseMove={draggable ? handleMouseMove : undefined}
+      onMouseUp={draggable ? handleMouseUp : undefined}
+      onMouseLeave={draggable ? handleMouseLeave : undefined}
+      onTouchStart={draggable ? handleTouchStart : undefined}
+      onTouchMove={draggable ? handleTouchMove : undefined}
+      onTouchEnd={draggable ? handleTouchEnd : undefined}
     >
       <div
         ref={cardRef}

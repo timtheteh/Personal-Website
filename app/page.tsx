@@ -1,5 +1,38 @@
 import Card from '@/components/Card';
 import TypewriterText from '@/components/TypewriterText';
+import Timeline from '@/components/Timeline';
+
+// Sample resume timeline data
+const resumeItems = [
+  {
+    id: '1',
+    title: 'Software Engineer',
+    subtitle: 'Company Name',
+    date: '2023 - Present',
+    description: 'Description of role and responsibilities.',
+  },
+  {
+    id: '2',
+    title: 'Full-Stack Developer',
+    subtitle: 'Previous Company',
+    date: '2021 - 2023',
+    description: 'Description of role and responsibilities.',
+  },
+  {
+    id: '3',
+    title: 'Junior Developer',
+    subtitle: 'First Company',
+    date: '2019 - 2021',
+    description: 'Description of role and responsibilities.',
+  },
+  {
+    id: '4',
+    title: 'Computer Science Degree',
+    subtitle: 'University Name',
+    date: '2015 - 2019',
+    description: 'Bachelor of Science in Computer Science.',
+  },
+];
 
 export default function Home() {
   return (
@@ -29,6 +62,12 @@ export default function Home() {
             <span className="text-foreground/50">Image placeholder</span>
           </div>
         </div>
+      </section>
+
+      {/* Resume Section */}
+      <section id="resume" className="mt-20 tablet:mt-24 desktop:mt-32">
+        <h2 className="text-3xl font-bold mb-8 tablet:mb-12">Resume</h2>
+        <Timeline items={resumeItems} />
       </section>
     </main>
   );
