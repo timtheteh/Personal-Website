@@ -11,6 +11,68 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: var(--font-inter), system-ui, sans-serif;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 15px,
+      rgba(128, 255, 0, 0.6) 15px,
+      rgba(128, 255, 0, 0.6) 16px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 15px,
+      rgba(128, 255, 0, 0.6) 15px,
+      rgba(128, 255, 0, 0.6) 16px
+    );
+  background-size: 16px 16px;
+  filter: blur(0.5px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 15px,
+      #80FF00 15px,
+      #80FF00 16px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 15px,
+      #80FF00 15px,
+      #80FF00 16px
+    );
+  background-size: 16px 16px;
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body > * {
+  position: relative;
+  z-index: 1;
 }
 
 /* Typography Styles */
