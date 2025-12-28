@@ -164,7 +164,7 @@ export default function Blog() {
   if (loading) {
     return (
       <main className="min-h-screen px-4 tablet:px-6 desktop:px-8 py-12 tablet:py-16 desktop:py-20">
-        <div className="max-w-[1200px] border-2 border-green-500 mx-auto">
+        <div className="max-w-[1200px] mx-auto">
           <div className="text-center py-12">
             <div className="text-foreground/50">Loading blog posts...</div>
           </div>
@@ -175,7 +175,7 @@ export default function Blog() {
 
   return (
     <main className="min-h-screen px-4 tablet:px-6 desktop:px-8 py-12 tablet:py-16 desktop:py-20">
-      <div className="max-w-[1200px] border-2 border-green-500 mx-auto">
+      <div className="max-w-[1200px] mx-auto">
         {/* Back Button */}
         <div className="mb-6 tablet:mb-8">
           <Link

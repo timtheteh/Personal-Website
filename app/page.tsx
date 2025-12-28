@@ -196,7 +196,7 @@ export default function Home() {
   return (
     <main className="min-h-screen px-4 tablet:px-6 desktop:px-8 py-12 tablet:py-16 desktop:py-20">
       {/* Hero Section */}
-      <section className="border-2 border-red-500 scroll-mt-20 tablet:scroll-mt-[88px] flex flex-col desktop:flex-row desktop:justify-between gap-8 desktop:gap-12 items-center">
+      <section className="scroll-mt-20 tablet:scroll-mt-[88px] flex flex-col desktop:flex-row desktop:justify-between gap-8 desktop:gap-12 items-center">
         {/* Column 1: Card - 60% on desktop */}
         <div className="w-full desktop:w-[80%]">
           <Card className="p-8">
@@ -236,7 +236,7 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="border-2 border-blue-500 scroll-mt-20 tablet:scroll-mt-[88px]">
+      <section id="about" className="scroll-mt-20 tablet:scroll-mt-[88px]">
         <div className="flex flex-col desktop:flex-row desktop:justify-between gap-8 desktop:gap-12 items-center">
           {/* Column 1: Image (placeholder) - Desktop first, Mobile/Tablet second */}
           <div className="w-full desktop:w-[40%] flex items-center justify-center order-2 desktop:order-1">
@@ -263,7 +263,7 @@ export default function Home() {
       </section>
 
       {/* Resume Section */}
-      <section id="resume" className="border-2 border-green-500 scroll-mt-20 tablet:scroll-mt-[88px]">
+      <section id="resume" className="scroll-mt-20 tablet:scroll-mt-[88px]">
         <div className="flex flex-col tablet:flex-row tablet:items-center gap-4 tablet:gap-4 mb-8 tablet:mb-12">
           <h2 className="text-5xl font-bold">Resume</h2>
           <div className="flex flex-col tablet:flex-row gap-4 self-start">
@@ -297,7 +297,7 @@ export default function Home() {
             </Button>
           </div>
         </div>
-        <Timeline className="border-2 border-red-500" items={resumeItems} />
+        <Timeline items={resumeItems} />
         
         {/* Skills Carousel */}
         <div className="mt-0 desktop:mt-4">
@@ -340,7 +340,7 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="border-2 border-yellow-500 mt-8 tablet:mt-10 desktop:mt-12 scroll-mt-20 tablet:scroll-mt-[88px]">
+      <section id="contact" className="mt-8 tablet:mt-10 desktop:mt-12 scroll-mt-20 tablet:scroll-mt-[88px]">
         <h2 className="text-5xl font-bold mb-8 tablet:mb-12">Contact</h2>
         <div className="flex flex-col tablet:flex-row gap-8 tablet:gap-12 desktop:gap-12">
           {/* Column 1 / Row 2 (Mobile) - Contact Form/Info */}
