@@ -7,19 +7,19 @@ interface TerminalLine {
   text: string;
 }
 
+const terminalCommands = [
+  // { command: 'whoami', output: 'timothy' },
+  // { command: 'pwd', output: '/home/timothy/projects' },
+  // { command: 'ls -la', output: 'total 24\ndrwxr-xr-x  8 timothy timothy 4096 Jan 15 10:30 .\ndrwxr-xr-x  3 timothy timothy 4096 Jan 10 09:00 ..\n-rw-r--r--  1 timothy timothy 1204 Jan 15 10:30 README.md\ndrwxr-xr-x  8 timothy timothy 4096 Jan 15 09:15 personal-website' },
+  { command: 'cat README.md', output: 'Welcome to my portfolio!\nI build things with code.\n\nTech Stack:\n- React/Next.js\n- TypeScript\n- Three.js\n- Tailwind CSS' },
+  { command: 'git status', output: 'On branch main\nYour branch is up to date with \'origin/main\'.\n\nnothing to commit, working tree clean' },
+];
+
 export default function Terminal() {
   const [lines, setLines] = useState<TerminalLine[]>([]);
   const [currentLine, setCurrentLine] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [lineIndex, setLineIndex] = useState(0);
-
-  const terminalCommands = [
-    // { command: 'whoami', output: 'timothy' },
-    // { command: 'pwd', output: '/home/timothy/projects' },
-    // { command: 'ls -la', output: 'total 24\ndrwxr-xr-x  8 timothy timothy 4096 Jan 15 10:30 .\ndrwxr-xr-x  3 timothy timothy 4096 Jan 10 09:00 ..\n-rw-r--r--  1 timothy timothy 1204 Jan 15 10:30 README.md\ndrwxr-xr-x  8 timothy timothy 4096 Jan 15 09:15 personal-website' },
-    { command: 'cat README.md', output: 'Welcome to my portfolio!\nI build things with code.\n\nTech Stack:\n- React/Next.js\n- TypeScript\n- Three.js\n- Tailwind CSS' },
-    { command: 'git status', output: 'On branch main\nYour branch is up to date with \'origin/main\'.\n\nnothing to commit, working tree clean' },
-  ];
 
   useEffect(() => {
     if (lineIndex < terminalCommands.length) {

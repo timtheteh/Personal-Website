@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from 'react';
 import Card from '@/components/Card';
 import TypewriterText from '@/components/TypewriterText';
 import Timeline from '@/components/Timeline';
@@ -122,6 +123,10 @@ const carouselItems3 = [
 ];
 
 export default function Home() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+
   const handleDownloadResume = () => {
     const link = document.createElement('a');
     link.href = '/timothyteh_resume.pdf';
@@ -131,10 +136,22 @@ export default function Home() {
     document.body.removeChild(link);
   };
 
+  // Email validation regex
+  const isValidEmail = (email: string) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
+  // Check if form is valid
+  const isFormValid = () => {
+    return name.trim() !== '' && email.trim() !== '' && isValidEmail(email) && message.trim() !== '';
+  };
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Form submission logic can be added here
-    console.log('Form submitted');
+    if (isFormValid()) {
+      // Form submission logic can be added here
+      console.log('Form submitted');
+    }
   };
 
   return (
@@ -291,41 +308,47 @@ export default function Home() {
           <div className="w-full tablet:w-1/2 order-2 tablet:order-1">
             <div className="rounded-2xl bg-white/10 border-2 border-white/30 p-6">
               <p className="text-foreground/70 mb-6">
-                Get in touch with me. I'd love to hear from you!
+                Get in touch with me. I&apos;d love to hear from you!
               </p>
               <form className="space-y-4" onSubmit={handleSubmit}>
                 <div>
                   <label htmlFor="name" className="block text-brandcolour2 font-semibold mb-2">
-                    Name
+                    *Name
                   </label>
                   <input
                     type="text"
                     id="name"
                     name="name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                     className="w-full px-4 py-2 rounded-lg bg-[#2C2C2C]/50 border-2 border-white/30 text-foreground placeholder-foreground/50 focus:outline-none focus:border-brandcolour1 transition-colors"
                     placeholder="Your name"
                   />
                 </div>
                 <div>
                   <label htmlFor="email" className="block text-brandcolour2 font-semibold mb-2">
-                    Email
+                    *Email
                   </label>
                   <input
                     type="email"
                     id="email"
                     name="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     className="w-full px-4 py-2 rounded-lg bg-[#2C2C2C]/50 border-2 border-white/30 text-foreground placeholder-foreground/50 focus:outline-none focus:border-brandcolour1 transition-colors"
                     placeholder="your.email@example.com"
                   />
                 </div>
                 <div>
                   <label htmlFor="message" className="block text-brandcolour2 font-semibold mb-2">
-                    Message
+                    *Message
                   </label>
                   <textarea
                     id="message"
                     name="message"
                     rows={4}
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
                     className="w-full px-4 py-2 rounded-lg bg-[#2C2C2C]/50 border-2 border-white/30 text-foreground placeholder-foreground/50 focus:outline-none focus:border-brandcolour1 transition-colors resize-none"
                     placeholder="Your message..."
                   />
@@ -369,9 +392,17 @@ export default function Home() {
                   </div>
                   {/* Submit Button */}
                   <div className="w-full tablet:w-auto order-1 tablet:order-2">
-                    <Button variant="brandcolour1" showArrow={false} className="w-full tablet:w-auto justify-center">
+                    <button
+                      type="submit"
+                      disabled={!isFormValid()}
+                      className={`inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all duration-200 w-full tablet:w-auto ${
+                        isFormValid()
+                          ? 'bg-[#2C2C2C] border-2 border-brandcolour1 text-brandcolour1 hover:bg-[#2C2C2C]/90 hover:scale-105 active:scale-95 cursor-pointer'
+                          : 'bg-[#2C2C2C]/50 border-2 border-white/30 text-foreground/50 cursor-not-allowed opacity-50'
+                      }`}
+                    >
                       Submit
-                    </Button>
+                    </button>
                   </div>
                 </div>
               </form>
@@ -381,7 +412,7 @@ export default function Home() {
           {/* Column 2 / Row 1 (Mobile) - Card Component */}
           <div className="w-full tablet:w-1/2 order-1 tablet:order-2 flex items-center justify-center">
             <Card className="p-8">
-              <h3 className="text-3xl font-bold mb-4">Let's Connect</h3>
+              <h3 className="text-3xl font-bold mb-4">Let&apos;s Connect</h3>
               <p className="text-foreground/70">
                 Feel free to reach out if you have any questions, opportunities, or just want to chat about technology!
               </p>
