@@ -8,7 +8,7 @@ import dynamic from 'next/dynamic';
 const Planet3D = dynamic(() => import('@/components/Planet3D'), {
   ssr: false,
   loading: () => (
-    <div className="w-full h-[400px] tablet:h-[500px] desktop:h-[600px] relative flex items-center justify-center">
+    <div className="w-full h-[400px] tablet:h-[600px] desktop:h-[700px] relative flex items-center justify-center">
       <div className="text-foreground/50">Loading 3D model...</div>
     </div>
   ),
@@ -120,12 +120,12 @@ export default function Home() {
       </section>
 
       {/* 3D Planet Transition Section */}
-      <section className="mt-20 tablet:mt-24 desktop:mt-32">
+      <section className="-mt-20 tablet:-mt-24 desktop:-mt-32 -mb-20 tablet:-mb-24 desktop:-mb-32">
         <Planet3D />
       </section>
 
       {/* About Section */}
-      <section id="about" className="border-2 border-blue-500 scroll-mt-20 tablet:scroll-mt-[88px] mt-20 tablet:mt-24 desktop:mt-32">
+      <section id="about" className="border-2 border-blue-500 scroll-mt-20 tablet:scroll-mt-[88px]">
         <div className="flex flex-col desktop:flex-row desktop:justify-between gap-8 desktop:gap-12 items-center">
           {/* Column 1: Image (placeholder) - Desktop first, Mobile/Tablet second */}
           <div className="w-full desktop:w-[40%] flex items-center justify-center order-2 desktop:order-1">

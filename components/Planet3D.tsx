@@ -21,7 +21,7 @@ function PlanetModel() {
     <primitive 
       ref={meshRef} 
       object={scene} 
-      scale={1} 
+      scale={1.3} 
       position={[0, 0, 0]}
     />
   );
@@ -37,14 +37,14 @@ export default function Planet3D() {
 
   if (!isMounted) {
     return (
-      <div className="w-full h-[400px] tablet:h-[500px] desktop:h-[600px] relative flex items-center justify-center">
+      <div className="w-full h-[500px] tablet:h-[600px] desktop:h-[700px] relative flex items-center justify-center">
         <div className="text-foreground/50">Loading 3D model...</div>
       </div>
     );
   }
 
   return (
-    <div className="w-full h-[400px] tablet:h-[500px] desktop:h-[600px] relative flex items-center justify-center">
+    <div className="w-full h-[500px] tablet:h-[600px] desktop:h-[700px] relative flex items-center justify-center">
       <Canvas
         camera={{ position: [0, 0, 5], fov: 50 }}
         gl={{ 
@@ -72,13 +72,13 @@ export default function Planet3D() {
         <PlanetModel />
         
         {/* Optional: OrbitControls for user interaction (can be disabled) */}
-        <OrbitControls 
+        {/* <OrbitControls 
           enableZoom={false}
           enablePan={false}
           autoRotate={false} // We're handling rotation manually
           enableDamping={true}
           dampingFactor={0.05}
-        />
+        /> */}
       </Canvas>
     </div>
   );
