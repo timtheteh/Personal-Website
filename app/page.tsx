@@ -3,6 +3,7 @@
 import Card from '@/components/Card';
 import TypewriterText from '@/components/TypewriterText';
 import Timeline from '@/components/Timeline';
+import Carousel from '@/components/Carousel';
 import Button from '@/components/Button';
 import Terminal from '@/components/Terminal';
 import dynamic from 'next/dynamic';
@@ -82,6 +83,42 @@ const resumeItems = [
     date: '2015 - 2019',
     description: 'Bachelor of Science in Computer Science.',
   },
+];
+
+// Sample carousel items with id, text, and icon
+const carouselItems = [
+  { id: 'react', text: 'React', icon: '⚛️' },
+  { id: 'nextjs', text: 'Next.js', icon: '▲' },
+  { id: 'typescript', text: 'TypeScript', icon: '📘' },
+  { id: 'nodejs', text: 'Node.js', icon: '🟢' },
+  { id: 'python', text: 'Python', icon: '🐍' },
+  { id: 'aws', text: 'AWS', icon: '☁️' },
+  { id: 'docker', text: 'Docker', icon: '🐳' },
+  { id: 'git', text: 'Git', icon: '📦' },
+];
+
+// Second carousel items
+const carouselItems2 = [
+  { id: 'postgresql', text: 'PostgreSQL', icon: '🐘' },
+  { id: 'mongodb', text: 'MongoDB', icon: '🍃' },
+  { id: 'redis', text: 'Redis', icon: '🔴' },
+  { id: 'graphql', text: 'GraphQL', icon: '◈' },
+  { id: 'tailwind', text: 'Tailwind', icon: '🎨' },
+  { id: 'figma', text: 'Figma', icon: '🎯' },
+  { id: 'kubernetes', text: 'K8s', icon: '☸️' },
+  { id: 'terraform', text: 'Terraform', icon: '🏗️' },
+];
+
+// third carousel items
+const carouselItems3 = [
+  { id: 'postgresql', text: 'PostgreSQL', icon: '🐘' },
+  { id: 'mongodb', text: 'MongoDB', icon: '🍃' },
+  { id: 'redis', text: 'Redis', icon: '🔴' },
+  { id: 'graphql', text: 'GraphQL', icon: '◈' },
+  { id: 'tailwind', text: 'Tailwind', icon: '🎨' },
+  { id: 'figma', text: 'Figma', icon: '🎯' },
+  { id: 'kubernetes', text: 'K8s', icon: '☸️' },
+  { id: 'terraform', text: 'Terraform', icon: '🏗️' },
 ];
 
 export default function Home() {
@@ -191,7 +228,46 @@ export default function Home() {
             </svg>
           </Button>
         </div>
-        <Timeline items={resumeItems} />
+        <Timeline className="border-2 border-red-500" items={resumeItems} />
+        
+        {/* Skills Carousel */}
+        <div className="mt-0 desktop:mt-12">
+          <Carousel 
+            items={carouselItems}
+            itemSize={{ mobile: 120, tablet: 160, desktop: 160 }}
+            gap={20}
+            speed={80}
+            direction="left"
+            pauseOnHover={false}
+            tilt={-5}
+          />
+        </div>
+        
+        {/* Second Carousel - opposite direction */}
+        <div className="-mt-32 tablet:-mt-32 desktop:-mt-32">
+          <Carousel 
+            items={carouselItems2}
+            itemSize={{ mobile: 120, tablet: 160, desktop: 160 }}
+            gap={20}
+            speed={80}
+            direction="right"
+            pauseOnHover={false}
+            tilt={-5}
+          />
+        </div>
+
+        {/* Third Carousel - opposite direction */}
+        <div className="-mt-32 tablet:-mt-32 desktop:-mt-32">
+          <Carousel 
+            items={carouselItems3}
+            itemSize={{ mobile: 120, tablet: 160, desktop: 160 }}
+            gap={20}
+            speed={80}
+            direction="left"
+            pauseOnHover={false}
+            tilt={-5}
+          />
+        </div>
       </section>
     </main>
   );

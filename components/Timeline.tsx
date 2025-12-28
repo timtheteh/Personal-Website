@@ -65,6 +65,36 @@ export default function Timeline({ items, className = '' }: TimelineProps) {
   // Fixed slot positions (4 slots) - percentages of content width
   const slotPercentages = [12.5, 37.5, 62.5, 87.5];
   
+  // Calculate container height based on last row
+  const calculateContainerHeight = () => {
+    if (rows.length === 0) return 0;
+    
+    const lastRowIndex = rows.length - 1;
+    const lastRow = rows[lastRowIndex];
+    const isReversed = lastRowIndex % 2 === 1;
+    
+    // Check if any cards in the last row are below the timeline
+    const hasCardsBelow = lastRow.some((item, itemIndexInRow) => {
+      const slotIndex = isReversed 
+        ? (itemsPerRow - 1 - itemIndexInRow) 
+        : itemIndexInRow;
+      const isAbove = slotIndex % 2 === 0;
+      return !isAbove;
+    });
+    
+    if (hasCardsBelow) {
+      // If cards are below, need full row height
+      return rows.length * rowHeight;
+    } else {
+      // If all cards are above, only need up to timeline center + padding
+      const timelineCenterY = lastRowIndex * rowHeight + rowHeight / 2;
+      const linePadding = 20; // Extra space for line visibility
+      return timelineCenterY + linePadding;
+    }
+  };
+  
+  const containerHeight = calculateContainerHeight();
+  
   // Generate the S-shape path for the timeline
   const generateSPath = () => {
     if (containerWidth === 0 || rows.length === 0) return '';
@@ -182,12 +212,12 @@ export default function Timeline({ items, className = '' }: TimelineProps) {
       <div 
         ref={containerRef} 
         className="hidden desktop:block relative"
-        style={{ minHeight: rows.length * rowHeight }}
+        style={{ minHeight: containerHeight }}
       >
         {/* SVG for the S-shaped line */}
         <svg 
           className="absolute inset-0 w-full pointer-events-none overflow-visible"
-          style={{ height: rows.length * rowHeight }}
+          style={{ height: containerHeight }}
         >
           <path
             d={generateSPath()}
