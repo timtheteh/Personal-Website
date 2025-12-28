@@ -291,7 +291,7 @@ export default function Home() {
             </Button>
             <Button 
               variant="brandcolour1" 
-              href="#projects"
+              href="/projects"
             >
               Projects
             </Button>

@@ -1,14 +1,38 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function TopBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+  const router = useRouter();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const scrollToSection = (targetId: string) => {
+    const targetElement = document.getElementById(targetId);
+    if (!targetElement) return;
+
+    // Get the actual top bar height dynamically
+    const topBarHeight = headerRef.current?.offsetHeight || (window.innerWidth >= 768 ? 64 : 56);
+    // Additional margin for spacing (24px)
+    const additionalMargin = 24;
+    
+    // Calculate the position to scroll to
+    const elementPosition = targetElement.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - topBarHeight - additionalMargin;
+    
+    // Smooth scroll to the position
+    window.scrollTo({
+      top: Math.max(0, offsetPosition), // Ensure we don't scroll to negative position
+      behavior: 'smooth'
+    });
   };
 
   // Update body padding when menu opens/closes or on resize
@@ -32,56 +56,45 @@ export default function TopBar() {
     };
   }, [isMenuOpen]);
 
-  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  // Handle hash scrolling when arriving at home page with hash
+  useEffect(() => {
+    if (pathname === '/' && window.location.hash) {
+      const hash = window.location.hash.substring(1);
+      // Small delay to ensure page is fully rendered
+      setTimeout(() => {
+        scrollToSection(hash);
+      }, 100);
+    }
+  }, [pathname]);
+
+  const handleHashLink = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     
     // Close mobile menu if open
-    const wasMenuOpen = isMenuOpen;
     setIsMenuOpen(false);
     
-    // Get the target element
-    const targetId = href.substring(1); // Remove the '#'
-    const targetElement = document.getElementById(targetId);
+    // Extract the hash from the href
+    const hash = href.includes('#') ? href.split('#')[1] : '';
     
-    if (targetElement) {
-      // If menu was open, wait for it to close and header height to update
-      const scrollToSection = () => {
-        // Get the actual top bar height dynamically
-        const topBarHeight = headerRef.current?.offsetHeight || (window.innerWidth >= 768 ? 64 : 56);
-        // Additional margin for spacing (24px)
-        const additionalMargin = 24;
-        
-        // Calculate the position to scroll to
-        const elementPosition = targetElement.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - topBarHeight - additionalMargin;
-        
-        // Smooth scroll to the position
-        window.scrollTo({
-          top: Math.max(0, offsetPosition), // Ensure we don't scroll to negative position
-          behavior: 'smooth'
-        });
-      };
-
-      if (wasMenuOpen) {
-        // Wait for menu to close and DOM to update
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            scrollToSection();
-          });
-        });
-      } else {
-        // Menu wasn't open, scroll immediately
-        scrollToSection();
-      }
+    // If we're on a different page, navigate to home first
+    if (pathname !== '/') {
+      router.push(href);
+      // Use a longer timeout to ensure page has loaded
+      setTimeout(() => {
+        scrollToSection(hash);
+      }, 300);
+    } else {
+      // We're already on home page, just scroll
+      scrollToSection(hash);
     }
   };
 
   const navigationLinks = [
-    { href: "#about", label: "About" },
-    { href: "#resume", label: "Resume" },
-    { href: "#blog", label: "Blog" },
-    { href: "#projects", label: "Projects" },
-    { href: "#contact", label: "Contact" },
+    { href: "/#about", label: "About" },
+    { href: "/#resume", label: "Resume" },
+    { href: "/blog", label: "Blog" },
+    { href: "/projects", label: "Projects" },
+    { href: "/#contact", label: "Contact" },
   ];
 
   return (
@@ -128,16 +141,25 @@ export default function TopBar() {
 
             {/* Navigation Links - Tablet and Desktop Only */}
             <div className="hidden tablet:flex items-center gap-6">
-              {navigationLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={(e) => handleLinkClick(e, link.href)}
-                  className="text-foreground hover:text-brandcolour1 transition-colors cursor-pointer"
-                >
-                  {link.label}
-                </a>
-              ))}
+              {navigationLinks.map((link) => {
+                // Use Link for all routes (hash links will navigate to home page with hash)
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={(e) => {
+                      if (link.href.includes('#')) {
+                        handleHashLink(e, link.href);
+                      } else {
+                        setIsMenuOpen(false);
+                      }
+                    }}
+                    className="text-foreground hover:text-brandcolour1 transition-colors cursor-pointer"
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
             </div>
           </nav>
         </div>
@@ -146,16 +168,25 @@ export default function TopBar() {
         {isMenuOpen && (
           <div ref={dropdownRef} className="tablet:hidden pb-4 animate-bounce-in">
             <div className="flex flex-col gap-1 pt-4">
-              {navigationLinks.map((link, index) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={(e) => handleLinkClick(e, link.href)}
-                  className="text-foreground hover:text-brandcolour1 transition-colors py-2 cursor-pointer"
-                >
-                  {index + 1}. {link.label.toUpperCase()}
-                </a>
-              ))}
+              {navigationLinks.map((link, index) => {
+                // Use Link for all routes (hash links will navigate to home page with hash)
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={(e) => {
+                      if (link.href.includes('#')) {
+                        handleHashLink(e, link.href);
+                      } else {
+                        setIsMenuOpen(false);
+                      }
+                    }}
+                    className="text-foreground hover:text-brandcolour1 transition-colors py-2 cursor-pointer"
+                  >
+                    {index + 1}. {link.label.toUpperCase()}
+                  </Link>
+                );
+              })}
             </div>
           </div>
         )}
