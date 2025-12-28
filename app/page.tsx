@@ -1,3 +1,5 @@
+"use client";
+
 import Card from '@/components/Card';
 import TypewriterText from '@/components/TypewriterText';
 import Timeline from '@/components/Timeline';
@@ -83,6 +85,15 @@ const resumeItems = [
 ];
 
 export default function Home() {
+  const handleDownloadResume = () => {
+    const link = document.createElement('a');
+    link.href = '/timothyteh_resume.pdf';
+    link.download = 'timothyteh_resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <main className="min-h-screen px-4 tablet:px-6 desktop:px-8 py-12 tablet:py-16 desktop:py-20">
       {/* Hero Section */}
@@ -154,7 +165,32 @@ export default function Home() {
 
       {/* Resume Section */}
       <section id="resume" className="border-2 border-green-500 scroll-mt-20 tablet:scroll-mt-[88px]">
-        <h2 className="text-5xl font-bold mb-8 tablet:mb-12">Resume</h2>
+        <div className="flex flex-col tablet:flex-row tablet:items-center gap-4 tablet:gap-4 mb-8 tablet:mb-12">
+          <h2 className="text-5xl font-bold">Resume</h2>
+          <Button 
+            variant="brandcolour2" 
+            showArrow={false}
+            className="self-start"
+            onClick={handleDownloadResume}
+          >
+            Download
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M8 11V1M8 11L4 7M8 11L12 7M2 13H14"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </Button>
+        </div>
         <Timeline items={resumeItems} />
       </section>
     </main>
