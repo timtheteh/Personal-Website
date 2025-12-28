@@ -9,6 +9,7 @@ interface BlogPost {
   date: string;
   description: string;
   thumbnail: string;
+  tags: string[];
 }
 
 export async function GET() {
@@ -29,6 +30,7 @@ export async function GET() {
           date: data.date,
           description: data.description,
           thumbnail: data.thumbnail,
+          tags: data.tags || [],
         };
       })
       .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
