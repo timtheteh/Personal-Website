@@ -231,7 +231,7 @@ export default function Home() {
         <Timeline className="border-2 border-red-500" items={resumeItems} />
         
         {/* Skills Carousel */}
-        <div className="mt-0 desktop:mt-12">
+        <div className="mt-0 desktop:mt-4">
           <Carousel 
             items={carouselItems}
             itemSize={{ mobile: 120, tablet: 160, desktop: 160 }}

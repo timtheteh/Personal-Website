@@ -188,14 +188,14 @@ export default function Carousel({
           {duplicatedItems.map((item, index) => (
             <div
               key={`${item.id}-${index}`}
-              className="flex-shrink-0 flex flex-col items-center justify-center gap-2 rounded-2xl bg-white shadow-lg overflow-hidden p-3 pointer-events-none select-none"
+              className="flex-shrink-0 flex flex-col items-center justify-center gap-2 rounded-2xl bg-[#2C2C2C] border-2 border-brandcolour2 shadow-lg overflow-hidden p-3 pointer-events-none select-none"
               style={{
                 width: `${currentSize}px`,
                 height: `${currentSize}px`,
               }}
             >
               <div className="text-3xl tablet:text-4xl">{item.icon}</div>
-              <span className="text-xs tablet:text-sm font-semibold text-black text-center leading-tight">{item.text}</span>
+              <span className="text-xs tablet:text-sm font-semibold text-brandcolour1 text-center leading-tight">{item.text}</span>
             </div>
           ))}
         </div>
