@@ -125,7 +125,10 @@ const carouselItems3 = [
 export default function Home() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   const handleDownloadResume = () => {
     const link = document.createElement('a');
@@ -143,14 +146,50 @@ export default function Home() {
 
   // Check if form is valid
   const isFormValid = () => {
-    return name.trim() !== '' && email.trim() !== '' && isValidEmail(email) && message.trim() !== '';
+    return name.trim() !== '' && email.trim() !== '' && isValidEmail(email) && subject.trim() !== '' && message.trim() !== '';
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (isFormValid()) {
-      // Form submission logic can be added here
-      console.log('Form submitted');
+    if (!isFormValid() || isSubmitting) return;
+
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          subject,
+          message,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        // Reset form
+        setName('');
+        setEmail('');
+        setSubject('');
+        setMessage('');
+        // Clear success message after 5 seconds
+        setTimeout(() => setSubmitStatus('idle'), 5000);
+      } else {
+        setSubmitStatus('error');
+        console.error('Form submission error:', data.error);
+      }
+    } catch (error) {
+      setSubmitStatus('error');
+      console.error('Form submission error:', error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -340,6 +379,20 @@ export default function Home() {
                   />
                 </div>
                 <div>
+                  <label htmlFor="subject" className="block text-brandcolour2 font-semibold mb-2">
+                    *Subject
+                  </label>
+                  <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    value={subject}
+                    onChange={(e) => setSubject(e.target.value)}
+                    className="w-full px-4 py-2 rounded-lg bg-[#2C2C2C]/50 border-2 border-white/30 text-foreground placeholder-foreground/50 focus:outline-none focus:border-brandcolour1 transition-colors"
+                    placeholder="Subject"
+                  />
+                </div>
+                <div>
                   <label htmlFor="message" className="block text-brandcolour2 font-semibold mb-2">
                     *Message
                   </label>
@@ -394,17 +447,28 @@ export default function Home() {
                   <div className="w-full tablet:w-auto order-1 tablet:order-2">
                     <button
                       type="submit"
-                      disabled={!isFormValid()}
+                      disabled={!isFormValid() || isSubmitting}
                       className={`inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all duration-200 w-full tablet:w-auto ${
-                        isFormValid()
+                        isFormValid() && !isSubmitting
                           ? 'bg-[#2C2C2C] border-2 border-brandcolour1 text-brandcolour1 hover:bg-[#2C2C2C]/90 hover:scale-105 active:scale-95 cursor-pointer'
                           : 'bg-[#2C2C2C]/50 border-2 border-white/30 text-foreground/50 cursor-not-allowed opacity-50'
                       }`}
                     >
-                      Submit
+                      {isSubmitting ? 'Sending...' : 'Submit'}
                     </button>
                   </div>
                 </div>
+                {/* Status Messages */}
+                {submitStatus === 'success' && (
+                  <div className="text-brandcolour2 text-sm mt-2">
+                    Message sent successfully! I&apos;ll get back to you soon.
+                  </div>
+                )}
+                {submitStatus === 'error' && (
+                  <div className="text-red-400 text-sm mt-2">
+                    Failed to send message. Please try again later.
+                  </div>
+                )}
               </form>
             </div>
           </div>
