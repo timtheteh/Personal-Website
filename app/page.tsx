@@ -8,6 +8,8 @@ import Carousel from '@/components/Carousel';
 import Button from '@/components/Button';
 import Terminal from '@/components/Terminal';
 import dynamic from 'next/dynamic';
+import { resumeItems } from '@/content/resume';
+import { carouselItems, carouselItems2, carouselItems3 } from '@/content/skills';
 
 // Dynamically import Planet3D with SSR disabled (WebGL requires browser)
 const Planet3D = dynamic(() => import('@/components/Planet3D'), {
@@ -19,108 +21,6 @@ const Planet3D = dynamic(() => import('@/components/Planet3D'), {
   ),
 });
 
-// Sample resume timeline data
-const resumeItems = [
-  {
-    id: '1',
-    title: 'Software Engineer',
-    subtitle: 'Company Name',
-    date: '2023 - Present',
-    description: 'Description of role and responsibilities.',
-  },
-  {
-    id: '2',
-    title: 'Full-Stack Developer',
-    subtitle: 'Previous Company',
-    date: '2021 - 2023',
-    description: 'Description of role and responsibilities.',
-  },
-  {
-    id: '3',
-    title: 'Junior Developer',
-    subtitle: 'First Company',
-    date: '2019 - 2021',
-    description: 'Description of role and responsibilities.',
-  },
-  {
-    id: '4',
-    title: 'Computer Science Degree',
-    subtitle: 'University Name',
-    date: '2015 - 2019',
-    description: 'Bachelor of Science in Computer Science.',
-  },
-  {
-    id: '5',
-    title: 'Computer Science Degree',
-    subtitle: 'University Name',
-    date: '2015 - 2019',
-    description: 'Bachelor of Science in Computer Science.',
-  },
-  {
-    id: '6',
-    title: 'Computer Science Degree',
-    subtitle: 'University Name',
-    date: '2015 - 2019',
-    description: 'Bachelor of Science in Computer Science.',
-  },
-  {
-    id: '7',
-    title: 'Computer Science Degree',
-    subtitle: 'University Name',
-    date: '2015 - 2019',
-    description: 'Bachelor of Science in Computer Science.',
-  },
-  {
-    id: '8',
-    title: 'Computer Science Degree',
-    subtitle: 'University Name',
-    date: '2015 - 2019',
-    description: 'Bachelor of Science in Computer Science.',
-  },
-  {
-    id: '9',
-    title: 'Computer Science Degree',
-    subtitle: 'University Name',
-    date: '2015 - 2019',
-    description: 'Bachelor of Science in Computer Science.',
-  },
-];
-
-// Sample carousel items with id, text, and icon
-const carouselItems = [
-  { id: 'react', text: 'React', icon: '⚛️' },
-  { id: 'nextjs', text: 'Next.js', icon: '▲' },
-  { id: 'typescript', text: 'TypeScript', icon: '📘' },
-  { id: 'nodejs', text: 'Node.js', icon: '🟢' },
-  { id: 'python', text: 'Python', icon: '🐍' },
-  { id: 'aws', text: 'AWS', icon: '☁️' },
-  { id: 'docker', text: 'Docker', icon: '🐳' },
-  { id: 'git', text: 'Git', icon: '📦' },
-];
-
-// Second carousel items
-const carouselItems2 = [
-  { id: 'postgresql', text: 'PostgreSQL', icon: '🐘' },
-  { id: 'mongodb', text: 'MongoDB', icon: '🍃' },
-  { id: 'redis', text: 'Redis', icon: '🔴' },
-  { id: 'graphql', text: 'GraphQL', icon: '◈' },
-  { id: 'tailwind', text: 'Tailwind', icon: '🎨' },
-  { id: 'figma', text: 'Figma', icon: '🎯' },
-  { id: 'kubernetes', text: 'K8s', icon: '☸️' },
-  { id: 'terraform', text: 'Terraform', icon: '🏗️' },
-];
-
-// third carousel items
-const carouselItems3 = [
-  { id: 'postgresql', text: 'PostgreSQL', icon: '🐘' },
-  { id: 'mongodb', text: 'MongoDB', icon: '🍃' },
-  { id: 'redis', text: 'Redis', icon: '🔴' },
-  { id: 'graphql', text: 'GraphQL', icon: '◈' },
-  { id: 'tailwind', text: 'Tailwind', icon: '🎨' },
-  { id: 'figma', text: 'Figma', icon: '🎯' },
-  { id: 'kubernetes', text: 'K8s', icon: '☸️' },
-  { id: 'terraform', text: 'Terraform', icon: '🏗️' },
-];
 
 export default function Home() {
   const [name, setName] = useState('');

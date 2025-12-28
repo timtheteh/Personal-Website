@@ -110,7 +110,7 @@ export default function TopBar() {
               Timothy
             </Link>
             {/* Social Icons - Desktop/Tablet Only */}
-            <div className="hidden tablet:flex items-center gap-3">
+            <div className="hidden tablet:flex items-center gap-4">
               <a 
                 href="https://github.com" 
                 target="_blank" 
