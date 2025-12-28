@@ -2,6 +2,7 @@ import Card from '@/components/Card';
 import TypewriterText from '@/components/TypewriterText';
 import Timeline from '@/components/Timeline';
 import Button from '@/components/Button';
+import Terminal from '@/components/Terminal';
 import dynamic from 'next/dynamic';
 
 // Dynamically import Planet3D with SSR disabled (WebGL requires browser)
@@ -146,8 +147,13 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Terminal Section */}
+      <section className="mt-8 tablet:mt-10 desktop:mt-12 mb-8 tablet:mb-10 desktop:mb-12">
+        <Terminal />
+      </section>
+
       {/* Resume Section */}
-      <section id="resume" className="border-2 border-green-500 scroll-mt-20 tablet:scroll-mt-[88px] mt-20 tablet:mt-24 desktop:mt-32">
+      <section id="resume" className="border-2 border-green-500 scroll-mt-20 tablet:scroll-mt-[88px]">
         <h2 className="text-5xl font-bold mb-8 tablet:mb-12">Resume</h2>
         <Timeline items={resumeItems} />
       </section>
