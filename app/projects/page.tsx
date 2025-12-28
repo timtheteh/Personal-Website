@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import Card from '@/components/Card';
 import { projectTags } from '@/content/projects/tags';
 
@@ -69,9 +70,10 @@ export default function Projects() {
         {/* Projects Grid */}
         <div className="grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-3 gap-6">
           {projects.map((project) => (
-            <div
+            <Link
               key={project.slug}
-              className="flex flex-col rounded-2xl border-2 border-white/30 overflow-hidden hover:border-brandcolour1 transition-colors"
+              href={`/projects/${project.slug}`}
+              className="flex flex-col rounded-2xl border-2 border-white/30 overflow-hidden hover:border-brandcolour1 transition-[border-color] cursor-pointer no-underline hover:no-underline text-inherit hover:text-inherit"
             >
               {/* Thumbnail */}
               <div className="w-full aspect-video bg-gradient-to-br from-brandcolour1/20 to-brandcolour2/20 flex items-center justify-center">
@@ -103,7 +105,7 @@ export default function Projects() {
                   })}
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

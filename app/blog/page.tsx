@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import Card from '@/components/Card';
 import { blogTags } from '@/content/blog/tags';
 
@@ -66,12 +67,105 @@ export default function Blog() {
           </div>
         </div>
         
+        {/* Search, Filter, and Sort Controls */}
+        <div className="mb-6 tablet:mb-8">
+          {/* Desktop/Tablet: Single row */}
+          <div className="hidden tablet:flex items-center gap-4">
+            {/* Search Bar */}
+            <div className="flex-1 relative">
+              <svg
+                className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-foreground/50"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <input
+                type="text"
+                placeholder="Search posts..."
+                className="w-full pl-12 pr-4 py-3 rounded-lg bg-[#2C2C2C] border-2 border-white/30 text-foreground placeholder:text-foreground/50 focus:outline-none focus:border-brandcolour1 transition-[border-color]"
+              />
+            </div>
+            {/* Filter Button */}
+            <button className="flex items-center gap-2 px-6 py-3 rounded-lg bg-[#2C2C2C] border-2 border-white/30 text-foreground hover:border-brandcolour1 transition-[border-color]">
+            Filter
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+              </svg>
+            </button>
+            {/* Sort Button */}
+            <button className="flex items-center gap-2 px-6 py-3 rounded-lg bg-[#2C2C2C] border-2 border-white/30 text-foreground hover:border-brandcolour1 transition-[border-color]">
+            Sort
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12" />
+              </svg>
+            </button>
+          </div>
+          
+          {/* Mobile: Two rows */}
+          <div className="flex flex-col gap-4 tablet:hidden">
+            {/* First row: Search Bar */}
+            <div className="relative">
+              <svg
+                className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-foreground/50"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <input
+                type="text"
+                placeholder="Search posts..."
+                className="w-full pl-12 pr-4 py-3 rounded-lg bg-[#2C2C2C] border-2 border-white/30 text-foreground placeholder:text-foreground/50 focus:outline-none focus:border-brandcolour1 transition-[border-color]"
+              />
+            </div>
+            {/* Second row: Filter and Sort Buttons */}
+            <div className="flex gap-4">
+              <button className="flex items-center justify-center gap-2 flex-1 px-6 py-3 rounded-lg bg-[#2C2C2C] border-2 border-white/30 text-foreground hover:border-brandcolour1 transition-[border-color]">
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                </svg>
+                Filter
+              </button>
+              <button className="flex items-center justify-center gap-2 flex-1 px-6 py-3 rounded-lg bg-[#2C2C2C] border-2 border-white/30 text-foreground hover:border-brandcolour1 transition-[border-color]">
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12" />
+                </svg>
+                Sort
+              </button>
+            </div>
+          </div>
+        </div>
+        
         {/* Blog Posts Grid */}
         <div className="grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-3 gap-6">
           {posts.map((post) => (
-            <div
+            <Link
               key={post.slug}
-              className="flex flex-col rounded-2xl border-2 border-white/30 overflow-hidden hover:border-brandcolour1 transition-colors"
+              href={`/blog/${post.slug}`}
+              className="flex flex-col rounded-2xl border-2 border-white/30 overflow-hidden hover:border-brandcolour1 transition-[border-color] cursor-pointer no-underline hover:no-underline text-inherit hover:text-inherit"
             >
               {/* Thumbnail */}
               <div className="w-full aspect-video bg-gradient-to-br from-brandcolour1/20 to-brandcolour2/20 flex items-center justify-center">
@@ -103,7 +197,7 @@ export default function Blog() {
                   })}
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
