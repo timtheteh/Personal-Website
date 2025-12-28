@@ -2,6 +2,17 @@ import Card from '@/components/Card';
 import TypewriterText from '@/components/TypewriterText';
 import Timeline from '@/components/Timeline';
 import Button from '@/components/Button';
+import dynamic from 'next/dynamic';
+
+// Dynamically import Planet3D with SSR disabled (WebGL requires browser)
+const Planet3D = dynamic(() => import('@/components/Planet3D'), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-[400px] tablet:h-[500px] desktop:h-[600px] relative flex items-center justify-center">
+      <div className="text-foreground/50">Loading 3D model...</div>
+    </div>
+  ),
+});
 
 // Sample resume timeline data
 const resumeItems = [
@@ -106,6 +117,11 @@ export default function Home() {
             <span className="text-foreground/50">Image placeholder</span>
           </div>
         </div>
+      </section>
+
+      {/* 3D Planet Transition Section */}
+      <section className="mt-20 tablet:mt-24 desktop:mt-32">
+        <Planet3D />
       </section>
 
       {/* About Section */}
