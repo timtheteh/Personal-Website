@@ -195,7 +195,7 @@ export default function Carousel({
               }}
             >
               <div className="text-3xl tablet:text-4xl">{item.icon}</div>
-              <span className="text-xs tablet:text-sm font-semibold text-brandcolour1 text-center leading-tight">{item.text}</span>
+              <span className="text-xs tablet:text-sm font-semibold text-[#ededed] text-center leading-tight">{item.text}</span>
             </div>
           ))}
         </div>

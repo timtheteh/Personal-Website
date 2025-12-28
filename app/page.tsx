@@ -204,29 +204,36 @@ export default function Home() {
       <section id="resume" className="border-2 border-green-500 scroll-mt-20 tablet:scroll-mt-[88px]">
         <div className="flex flex-col tablet:flex-row tablet:items-center gap-4 tablet:gap-4 mb-8 tablet:mb-12">
           <h2 className="text-5xl font-bold">Resume</h2>
-          <Button 
-            variant="brandcolour2" 
-            showArrow={false}
-            className="self-start"
-            onClick={handleDownloadResume}
-          >
-            Download
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+          <div className="flex flex-col tablet:flex-row gap-4 self-start">
+            <Button 
+              variant="brandcolour2" 
+              showArrow={false}
+              onClick={handleDownloadResume}
             >
-              <path
-                d="M8 11V1M8 11L4 7M8 11L12 7M2 13H14"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </Button>
+              Download
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M8 11V1M8 11L4 7M8 11L12 7M2 13H14"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </Button>
+            <Button 
+              variant="brandcolour1" 
+              href="#projects"
+            >
+              Projects
+            </Button>
+          </div>
         </div>
         <Timeline className="border-2 border-red-500" items={resumeItems} />
         
