@@ -13,6 +13,7 @@ interface BlogPost {
   description: string;
   thumbnail: string;
   tags: string[];
+  readingTime: number;
 }
 
 export default function Blog() {
@@ -650,6 +651,7 @@ export default function Blog() {
               tags={post.tags}
               tagsMap={blogTags}
               hrefPrefix="/blog"
+              readingTime={post.readingTime}
             />
           ))}
         </div>

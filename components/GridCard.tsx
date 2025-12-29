@@ -13,6 +13,7 @@ interface GridCardProps {
   tags?: string[];
   tagsMap: Record<string, Tag>;
   hrefPrefix: string;
+  readingTime?: number;
 }
 
 export default function GridCard({
@@ -23,6 +24,7 @@ export default function GridCard({
   tags = [],
   tagsMap,
   hrefPrefix,
+  readingTime,
 }: GridCardProps) {
   return (
     <Link
@@ -38,25 +40,48 @@ export default function GridCard({
         <h2 className="text-xl font-semibold text-brandcolour2 line-clamp-2 leading-tight">{title}</h2>
         <p className="text-sm text-foreground/70 line-clamp-3 leading-snug">{description}</p>
         <span className="text-xs text-brandcolour1 font-mono mt-auto flex-shrink-0">{date}</span>
-        {/* Tags */}
-        <div className="flex flex-wrap gap-2 mt-2 overflow-hidden max-h-8">
-          {tags.map((tagSlug) => {
-            const tag = tagsMap[tagSlug];
-            if (!tag) return null;
-            return (
-              <span
-                key={tagSlug}
-                className="px-2 py-1 text-xs font-mono rounded flex-shrink-0"
-                style={{ 
-                  backgroundColor: tag.color + '20',
-                  color: tag.color,
-                  border: `1px solid ${tag.color}40`
-                }}
+        {/* Tags and Reading Time */}
+        <div className="flex flex-wrap items-center justify-between gap-2 mt-2 overflow-hidden max-h-8">
+          {/* Tags */}
+          <div className="flex flex-wrap items-center gap-2 overflow-hidden max-h-8 flex-1 min-w-0">
+            {tags.map((tagSlug) => {
+              const tag = tagsMap[tagSlug];
+              if (!tag) return null;
+              return (
+                <span
+                  key={tagSlug}
+                  className="px-2 py-1 text-xs font-mono rounded flex-shrink-0"
+                  style={{ 
+                    backgroundColor: tag.color + '20',
+                    color: tag.color,
+                    border: `1px solid ${tag.color}40`
+                  }}
+                >
+                  {tag.name}
+                </span>
+              );
+            })}
+          </div>
+          {/* Reading Time - Right Aligned */}
+          {readingTime !== undefined && (
+            <div className="flex items-center gap-1 text-xs text-foreground/70 font-mono flex-shrink-0">
+              <svg
+                className="w-3 h-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                {tag.name}
-              </span>
-            );
-          })}
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <span>{readingTime} min</span>
+            </div>
+          )}
         </div>
       </div>
     </Link>

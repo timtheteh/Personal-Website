@@ -33,6 +33,7 @@ interface BlogPost {
   description: string;
   thumbnail: string;
   tags: string[];
+  readingTime: number;
 }
 
 interface Project {
@@ -42,6 +43,7 @@ interface Project {
   description: string;
   thumbnail: string;
   tags?: string[];
+  readingTime: number;
 }
 
 export default function Home() {
@@ -325,6 +327,7 @@ export default function Home() {
                       tags={post.tags}
                       tagsMap={blogTags}
                       hrefPrefix="/blog"
+                      readingTime={post.readingTime}
                     />
                   ))}
                 </div>
@@ -340,6 +343,7 @@ export default function Home() {
                         tags={post.tags}
                         tagsMap={blogTags}
                         hrefPrefix="/blog"
+                        readingTime={post.readingTime}
                       />
                     </div>
                   ))}
@@ -384,6 +388,7 @@ export default function Home() {
                       tags={project.tags}
                       tagsMap={projectTags}
                       hrefPrefix="/projects"
+                      readingTime={project.readingTime}
                     />
                   ))}
                 </div>
@@ -399,6 +404,7 @@ export default function Home() {
                         tags={project.tags}
                         tagsMap={projectTags}
                         hrefPrefix="/projects"
+                        readingTime={project.readingTime}
                       />
                     </div>
                   ))}

@@ -10,6 +10,7 @@ interface Project {
   description: string;
   thumbnail: string;
   tags?: string[];
+  readingTime: number;
 }
 
 export async function GET() {
@@ -31,6 +32,7 @@ export async function GET() {
           description: data.description,
           thumbnail: data.thumbnail,
           tags: data.tags || [],
+          readingTime: data.readingTime || 5,
         };
       })
       .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());

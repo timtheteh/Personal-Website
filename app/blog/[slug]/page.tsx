@@ -62,6 +62,28 @@ export default async function BlogPost({ params }: PageProps) {
               <h1 className="text-4xl tablet:text-5xl font-bold mb-4">{data.title}</h1>
               <div className="flex flex-col gap-4">
                 <span className="text-xs text-brandcolour1 font-mono">{data.date}</span>
+                {/* Reading Time and Tags */}
+                <div className="flex flex-wrap items-center gap-4">
+                  {data.readingTime && (
+                    <div className="flex items-center gap-1 text-xs text-foreground/70 font-mono">
+                      <svg
+                        className="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                      <span>{data.readingTime} min read</span>
+                    </div>
+                  )}
+                </div>
                 {/* Tags */}
                 <div className="flex flex-wrap gap-2">
                   {data.tags?.map((tagSlug: string) => {
@@ -87,8 +109,8 @@ export default async function BlogPost({ params }: PageProps) {
           </div>
 
           {/* MDX Content */}
-          <Card className="p-8">
-            <div className="prose prose-invert prose-lg max-w-none prose-headings:text-foreground prose-p:text-foreground/90 prose-a:text-brandcolour1 prose-strong:text-foreground prose-code:text-brandcolour1 prose-code:bg-white/10 prose-code:px-1 prose-code:py-0.5 prose-code:rounded">
+          <Card className="p-6 tablet:p-8 desktop:p-8" draggable={false}>
+            <div className="prose prose-invert prose-lg max-w-none prose-headings:text-foreground prose-p:text-foreground/90 prose-a:text-brandcolour1 prose-strong:text-foreground prose-code:text-brandcolour1 prose-code:px-1 prose-code:py-0.5 prose-code:rounded">
               <MDXRemote source={content} />
             </div>
           </Card>

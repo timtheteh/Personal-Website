@@ -13,6 +13,7 @@ interface Project {
   description: string;
   thumbnail: string;
   tags?: string[];
+  readingTime: number;
 }
 
 export default function Projects() {
@@ -646,6 +647,7 @@ export default function Projects() {
               tags={project.tags}
               tagsMap={projectTags}
               hrefPrefix="/projects"
+              readingTime={project.readingTime}
             />
           ))}
         </div>
