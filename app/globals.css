@@ -261,3 +261,52 @@ li {
   }
 }
 
+/* Moving glow animation for section divider */
+.section-divider-glow {
+  position: relative;
+}
+
+.section-divider-glow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.6) 20%,
+    rgba(135, 206, 235, 1) 50%,
+    rgba(255, 255, 255, 0.6) 80%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: moving-glow-overlay 4s linear infinite;
+  pointer-events: none;
+  box-shadow: 
+    0 0 20px rgba(135, 206, 235, 0.8),
+    0 0 40px rgba(135, 206, 235, 0.6),
+    0 0 60px rgba(255, 255, 255, 0.4);
+}
+
+@keyframes moving-glow-overlay {
+  0% {
+    background-position: -100% 0;
+  }
+  50% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section-divider-glow::before {
+    animation: none;
+    background-position: 0% 0;
+  }
+}
+
