@@ -84,7 +84,7 @@ export default function TopBar() {
       setTimeout(() => {
         scrollToSection(hash);
       }, 300);
-    } else {
+      } else {
       // We're already on home page, just scroll
       scrollToSection(hash);
     }
@@ -203,8 +203,8 @@ export default function TopBar() {
                 // Use Link for all routes (hash links will navigate to home page with hash)
                 return (
                   <Link
-                    key={link.href}
-                    href={link.href}
+                  key={link.href}
+                  href={link.href}
                     onClick={(e) => {
                       if (link.href.includes('#')) {
                         handleHashLink(e, link.href);
@@ -213,8 +213,8 @@ export default function TopBar() {
                       }
                     }}
                     className="text-foreground hover:text-brandcolour1 transition-colors cursor-pointer font-mono"
-                  >
-                    {link.label}
+                >
+                  {link.label}
                   </Link>
                 );
               })}
@@ -266,8 +266,8 @@ export default function TopBar() {
                 // Use Link for all routes (hash links will navigate to home page with hash)
                 return (
                   <Link
-                    key={link.href}
-                    href={link.href}
+                  key={link.href}
+                  href={link.href}
                     onClick={(e) => {
                       if (link.href.includes('#')) {
                         handleHashLink(e, link.href);
@@ -276,8 +276,8 @@ export default function TopBar() {
                       }
                     }}
                     className="text-foreground hover:text-brandcolour1 transition-colors py-2 cursor-pointer font-mono"
-                  >
-                    {index + 1}. {link.label.toUpperCase()}
+                >
+                  {index + 1}. {link.label.toUpperCase()}
                   </Link>
                 );
               })}

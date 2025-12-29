@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Card from '@/components/Card';
 import GridCard from '@/components/GridCard';
 import TypewriterText from '@/components/TypewriterText';
+import Pagination from '@/components/Pagination';
 import { blogTags } from '@/content/blog/tags';
 
 interface BlogPost {
@@ -20,12 +21,15 @@ interface BlogPost {
 export default function Blog() {
   const [allPosts, setAllPosts] = useState<BlogPost[]>([]);
   const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [paginatedPosts, setPaginatedPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedTags, setSelectedTags] = useState<Set<string>>(new Set());
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [sortOption, setSortOption] = useState<string>('date-desc');
   const [isSortOpen, setIsSortOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
   const filterDropdownRefDesktop = useRef<HTMLDivElement>(null);
   const filterDropdownRefMobile = useRef<HTMLDivElement>(null);
   const sortDropdownRefDesktop = useRef<HTMLDivElement>(null);
@@ -167,7 +171,16 @@ export default function Blog() {
     filtered = sorted;
 
     setPosts(filtered);
+    // Reset to page 1 when filters change
+    setCurrentPage(1);
   }, [searchQuery, selectedTags, sortOption, allPosts]);
+
+  // Paginate posts
+  useEffect(() => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    setPaginatedPosts(posts.slice(startIndex, endIndex));
+  }, [posts, currentPage, itemsPerPage]);
 
   if (loading) {
     return (
@@ -667,7 +680,7 @@ export default function Blog() {
         
         {/* Blog Posts Grid */}
         <div className="grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-3 gap-6">
-          {posts.map((post) => (
+          {paginatedPosts.map((post) => (
             <GridCard
               key={post.slug}
               slug={post.slug}
@@ -680,6 +693,17 @@ export default function Blog() {
               readingTime={post.readingTime}
             />
           ))}
+        </div>
+
+        {/* Pagination */}
+        <div className="mt-8">
+          <Pagination
+            currentPage={currentPage}
+            totalItems={posts.length}
+            itemsPerPage={itemsPerPage}
+            onPageChange={setCurrentPage}
+            onItemsPerPageChange={setItemsPerPage}
+          />
         </div>
       </div>
     </main>

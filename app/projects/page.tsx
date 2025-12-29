@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Card from '@/components/Card';
 import GridCard from '@/components/GridCard';
 import TypewriterText from '@/components/TypewriterText';
+import Pagination from '@/components/Pagination';
 import { projectTags } from '@/content/projects/tags';
 
 interface Project {
@@ -20,12 +21,15 @@ interface Project {
 export default function Projects() {
   const [allProjects, setAllProjects] = useState<Project[]>([]);
   const [projects, setProjects] = useState<Project[]>([]);
+  const [paginatedProjects, setPaginatedProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedTags, setSelectedTags] = useState<Set<string>>(new Set());
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [sortOption, setSortOption] = useState<string>('date-desc');
   const [isSortOpen, setIsSortOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
   const filterDropdownRefDesktop = useRef<HTMLDivElement>(null);
   const filterDropdownRefMobile = useRef<HTMLDivElement>(null);
   const sortDropdownRefDesktop = useRef<HTMLDivElement>(null);
@@ -167,7 +171,16 @@ export default function Projects() {
     filtered = sorted;
 
     setProjects(filtered);
+    // Reset to page 1 when filters change
+    setCurrentPage(1);
   }, [searchQuery, selectedTags, sortOption, allProjects]);
+
+  // Paginate projects
+  useEffect(() => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    setPaginatedProjects(projects.slice(startIndex, endIndex));
+  }, [projects, currentPage, itemsPerPage]);
 
   if (loading) {
     return (
@@ -663,7 +676,7 @@ export default function Projects() {
         
         {/* Projects Grid */}
         <div className="grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-3 gap-6">
-          {projects.map((project) => (
+          {paginatedProjects.map((project) => (
             <GridCard
               key={project.slug}
               slug={project.slug}
@@ -676,6 +689,17 @@ export default function Projects() {
               readingTime={project.readingTime}
             />
           ))}
+        </div>
+
+        {/* Pagination */}
+        <div className="mt-8">
+          <Pagination
+            currentPage={currentPage}
+            totalItems={projects.length}
+            itemsPerPage={itemsPerPage}
+            onPageChange={setCurrentPage}
+            onItemsPerPageChange={setItemsPerPage}
+          />
         </div>
       </div>
     </main>
