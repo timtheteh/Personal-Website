@@ -19,7 +19,7 @@ export default function Button({
   href,
   showArrow = true,
 }: ButtonProps) {
-  const baseClasses = 'inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all duration-200 hover:scale-105 active:scale-95';
+  const baseClasses = 'inline-flex items-center justify-between gap-2 px-6 py-3 rounded-lg font-semibold transition-all duration-200 hover:scale-105 active:scale-95';
   
   const variantClasses = {
     brandcolour1: 'bg-[#2C2C2C] border-2 border-brandcolour1 text-brandcolour1 hover:bg-[#2C2C2C]/90',

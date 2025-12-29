@@ -218,11 +218,12 @@ export default function Home() {
       <section id="resume" className="scroll-mt-20 tablet:scroll-mt-[88px]">
         <div className="flex flex-col tablet:flex-row tablet:items-center gap-4 tablet:gap-4 mb-8 tablet:mb-12">
           <h2 className="text-5xl font-bold">Resume</h2>
-          <div className="flex flex-col tablet:flex-row gap-4 self-start">
+          <div className="flex flex-col tablet:flex-row gap-4 self-start w-full tablet:w-auto">
             <Button 
               variant="brandcolour2" 
               showArrow={false}
               onClick={handleDownloadResume}
+              className="w-full tablet:w-auto"
             >
               Download
               <svg
@@ -244,6 +245,7 @@ export default function Home() {
             <Button 
               variant="brandcolour1" 
               href="/projects"
+              className="w-full tablet:w-auto"
             >
               Projects
             </Button>
