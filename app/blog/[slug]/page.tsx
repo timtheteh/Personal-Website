@@ -5,6 +5,7 @@ import matter from 'gray-matter';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Card from '@/components/Card';
+import ScrollToTop from '@/components/ScrollToTop';
 import { blogTags } from '@/content/blog/tags';
 
 interface PageProps {
@@ -33,8 +34,10 @@ export default async function BlogPost({ params }: PageProps) {
     const { data, content } = matter(fileContents);
 
     return (
-      <main className="min-h-screen px-4 tablet:px-6 desktop:px-8 py-12 tablet:py-16 desktop:py-20">
-        <div className="max-w-[1200px] mx-auto">
+      <>
+        <ScrollToTop />
+        <main className="min-h-screen px-4 tablet:px-6 desktop:px-8 py-12 tablet:py-16 desktop:py-20">
+          <div className="max-w-[1200px] mx-auto">
           {/* Back Button */}
           <div className="mb-6 tablet:mb-8">
             <Link
@@ -91,6 +94,7 @@ export default async function BlogPost({ params }: PageProps) {
           </Card>
         </div>
       </main>
+      </>
     );
   } catch (error) {
     notFound();
