@@ -19,6 +19,9 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Timothy Teh",
   description: "Personal portfolio and blog",
+  icons: {
+    icon: '/favicon.png',
+  },
 };
 
 export default function RootLayout({
