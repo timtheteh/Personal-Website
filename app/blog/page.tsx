@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Card from '@/components/Card';
+import GridCard from '@/components/GridCard';
 import { blogTags } from '@/content/blog/tags';
 
 interface BlogPost {
@@ -635,42 +636,16 @@ export default function Blog() {
         {/* Blog Posts Grid */}
         <div className="grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-3 gap-6">
           {posts.map((post) => (
-            <Link
+            <GridCard
               key={post.slug}
-              href={`/blog/${post.slug}`}
-              className="flex flex-col rounded-2xl border-2 border-white/30 overflow-hidden hover:border-brandcolour1 transition-[border-color] cursor-pointer no-underline hover:no-underline text-inherit hover:text-inherit"
-            >
-              {/* Thumbnail */}
-              <div className="w-full aspect-video bg-gradient-to-br from-brandcolour1/20 to-brandcolour2/20 flex items-center justify-center">
-                <span className="text-foreground/50 text-sm">Thumbnail</span>
-              </div>
-              {/* Description Section */}
-              <div className="p-4 flex flex-col gap-2 bg-[#2C2C2C] flex-1">
-                <h2 className="text-xl font-semibold text-brandcolour2">{post.title}</h2>
-                <p className="text-sm text-foreground/70">{post.description}</p>
-                <span className="text-xs text-brandcolour1 font-mono mt-2">{post.date}</span>
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2 mt-2">
-                  {post.tags?.map((tagSlug) => {
-                    const tag = blogTags[tagSlug];
-                    if (!tag) return null;
-                    return (
-                      <span
-                        key={tagSlug}
-                        className="px-2 py-1 text-xs font-mono rounded"
-                        style={{ 
-                          backgroundColor: tag.color + '20',
-                          color: tag.color,
-                          border: `1px solid ${tag.color}40`
-                        }}
-                      >
-                        {tag.name}
-                      </span>
-                    );
-                  })}
-                </div>
-              </div>
-            </Link>
+              slug={post.slug}
+              title={post.title}
+              description={post.description}
+              date={post.date}
+              tags={post.tags}
+              tagsMap={blogTags}
+              hrefPrefix="/blog"
+            />
           ))}
         </div>
       </div>
