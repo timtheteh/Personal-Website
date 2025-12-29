@@ -160,16 +160,16 @@ export default function Home() {
                 ]}
               />
             </p>
-            <p className="mt-4 text-foreground/70">This is a liquid-glass card component.</p>
+            <p className="mt-4 text-foreground/70 mb-6">This is a liquid-glass card component.</p>
+            <div className="flex flex-col tablet:flex-row gap-4">
+              <Button variant="brandcolour2" href="#contact" showArrow={false} className="w-full tablet:w-auto">
+                Contact me
+              </Button>
+              <Button variant="brandcolour1" href="#about" className="w-full tablet:w-auto">
+                Learn more
+              </Button>
+            </div>
           </Card>
-          <div className="mt-6 flex flex-row gap-4 relative z-10">
-            <Button variant="brandcolour2" href="#contact" showArrow={false} className="flex-1 tablet:flex-initial relative z-10">
-              Contact me
-            </Button>
-            <Button variant="brandcolour1" href="#about" className="flex-1 tablet:flex-initial relative z-10">
-              Learn more
-            </Button>
-          </div>
         </div>
         
         {/* Column 2: Image (placeholder) - 40% on desktop */}

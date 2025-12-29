@@ -181,12 +181,30 @@ export default function Card({
   const edgeShadowX = Math.sin(angleRad) * 2;
   const edgeShadowY = -Math.cos(angleRad) * 2;
 
+  const handleCardMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    // Don't activate drag if clicking on interactive elements (buttons, links, etc.)
+    const target = e.target as HTMLElement;
+    if (target.closest('button, a, input, textarea, select')) {
+      return;
+    }
+    handleMouseDown(e);
+  };
+
+  const handleCardMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    // Don't activate drag if hovering over interactive elements
+    const target = e.target as HTMLElement;
+    if (target.closest('button, a, input, textarea, select')) {
+      return;
+    }
+    handleMouseMove(e);
+  };
+
   return (
     <div 
       className={draggable ? 'select-none' : ''}
       style={{ perspective: '1000px', touchAction: draggable ? 'none' : 'auto' }}
-      onMouseDown={draggable ? handleMouseDown : undefined}
-      onMouseMove={draggable ? handleMouseMove : undefined}
+      onMouseDown={draggable ? handleCardMouseDown : undefined}
+      onMouseMove={draggable ? handleCardMouseMove : undefined}
       onMouseUp={draggable ? handleMouseUp : undefined}
       onMouseLeave={draggable ? handleMouseLeave : undefined}
       onTouchStart={draggable ? handleTouchStart : undefined}
@@ -284,7 +302,7 @@ export default function Card({
         />
       
         {/* Content */}
-        <div className="relative z-10">
+        <div className="relative z-10 pointer-events-auto">
           {children}
         </div>
       </div>

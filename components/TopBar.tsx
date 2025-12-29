@@ -105,6 +105,17 @@ export default function TopBar() {
           <div className="flex items-center gap-4">
             <Link
               href="/"
+              onClick={(e) => {
+                if (pathname === '/') {
+                  e.preventDefault();
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                  // When navigating from another page, scroll to top after navigation
+                  setTimeout(() => {
+                    window.scrollTo({ top: 0, behavior: 'auto' });
+                  }, 100);
+                }
+              }}
               className="text-2xl tablet:text-3xl desktop:text-3xl font-mono text-brandcolour1 hover:text-brandcolour1/80 transition-colors cursor-pointer no-underline hover:no-underline"
             >
               Timothy
