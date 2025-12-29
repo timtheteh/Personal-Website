@@ -22,8 +22,8 @@ export default function Button({
   const baseClasses = 'inline-flex items-center justify-between gap-2 px-6 py-3 rounded-lg font-semibold transition-all duration-200 hover:scale-105 active:scale-95';
   
   const variantClasses = {
-    brandcolour1: 'bg-[#2C2C2C] border-2 border-brandcolour1 text-brandcolour1 hover:bg-[#2C2C2C]/90',
-    brandcolour2: 'bg-[#2C2C2C] border-2 border-brandcolour2 text-brandcolour2 hover:bg-[#2C2C2C]/90',
+    brandcolour1: 'bg-[#2C2C2C] border-2 border-brandcolour1 text-brandcolour1 hover:bg-[#2C2C2C]/90 hover:text-brandcolour1',
+    brandcolour2: 'bg-[#2C2C2C] border-2 border-brandcolour2 text-brandcolour2 hover:bg-[#2C2C2C]/90 hover:text-brandcolour2',
   };
 
   const buttonClasses = `${baseClasses} ${variantClasses[variant]} ${className}`;
@@ -59,8 +59,9 @@ export default function Button({
     return (
       <a
         href={href}
-        className={`${buttonClasses} group`}
+        className={`${buttonClasses} group no-underline hover:no-underline`}
         onClick={onClick}
+        style={{ textDecoration: 'none' }}
       >
         {content}
       </a>
