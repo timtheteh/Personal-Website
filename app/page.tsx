@@ -9,6 +9,7 @@ import Timeline from '@/components/Timeline';
 import Carousel from '@/components/Carousel';
 import Button from '@/components/Button';
 import Terminal from '@/components/Terminal';
+import SectionDivider from '@/components/SectionDivider';
 import dynamic from 'next/dynamic';
 import { resumeItems } from '@/content/resume';
 import { carouselItems, carouselItems2, carouselItems3 } from '@/content/skills';
@@ -220,15 +221,7 @@ export default function Home() {
       </section>
 
       {/* Section Divider */}
-      <div className="relative z-10 -mt-10 tablet:-mt-12 desktop:-mt-16 mb-12 tablet:mb-16 desktop:mb-12">
-        <div 
-          className="h-[5px] rounded-full w-full"
-          style={{
-            background: 'linear-gradient(90deg, #87CEEB 0%, #FFFFFF 50%, #87CEEB 100%)',
-            boxShadow: '0 0 10px rgba(135, 206, 235, 0.6), 0 0 20px rgba(135, 206, 235, 0.4), 0 0 30px rgba(255, 255, 255, 0.3)',
-          }}
-        />
-      </div>
+      <SectionDivider className="-mt-10 tablet:-mt-12 desktop:-mt-16 mb-12 tablet:mb-16 desktop:mb-12" />
 
       {/* About Section */}
       <section 
@@ -262,15 +255,7 @@ export default function Home() {
       </section>
 
       {/* Section Divider */}
-      <div className="relative z-10 mt-12 tablet:mt-12 desktop:mt-12 mb-12 tablet:mb-12 desktop:mb-12">
-        <div 
-          className="h-[5px] rounded-full w-full"
-          style={{
-            background: 'linear-gradient(90deg, #87CEEB 0%, #FFFFFF 50%, #87CEEB 100%)',
-            boxShadow: '0 0 10px rgba(135, 206, 235, 0.6), 0 0 20px rgba(135, 206, 235, 0.4), 0 0 30px rgba(255, 255, 255, 0.3)',
-          }}
-        />
-      </div>
+      <SectionDivider className="mt-12 tablet:mt-12 desktop:mt-12 mb-12 tablet:mb-12 desktop:mb-12" />
 
       {/* Resume Section */}
       <section 
@@ -355,16 +340,8 @@ export default function Home() {
         </div>
       </section>
 
-       {/* Section Divider */}
-       <div className="relative z-10 -mt-4 tablet:mt-2 desktop:mt-8 mb-12 tablet:mb-12 desktop:mb-12">
-        <div 
-          className="h-[5px] rounded-full w-full"
-          style={{
-            background: 'linear-gradient(90deg, #87CEEB 0%, #FFFFFF 50%, #87CEEB 100%)',
-            boxShadow: '0 0 10px rgba(135, 206, 235, 0.6), 0 0 20px rgba(135, 206, 235, 0.4), 0 0 30px rgba(255, 255, 255, 0.3)',
-          }}
-        />
-      </div>
+      {/* Section Divider */}
+      <SectionDivider className="-mt-4 tablet:mt-2 desktop:mt-8 mb-12 tablet:mb-12 desktop:mb-12" />
 
       {/* Blog Section */}
       <section 
@@ -432,15 +409,7 @@ export default function Home() {
       </section>
 
       {/* Section Divider */}
-      <div className="relative z-10 mt-12 tablet:mt-12 desktop:mt-12 mb-12 tablet:mb-12 desktop:mb-12">
-        <div 
-          className="h-[5px] rounded-full w-full"
-          style={{
-            background: 'linear-gradient(90deg, #87CEEB 0%, #FFFFFF 50%, #87CEEB 100%)',
-            boxShadow: '0 0 10px rgba(135, 206, 235, 0.6), 0 0 20px rgba(135, 206, 235, 0.4), 0 0 30px rgba(255, 255, 255, 0.3)',
-          }}
-        />
-      </div>
+      <SectionDivider className="mt-12 tablet:mt-12 desktop:mt-12 mb-12 tablet:mb-12 desktop:mb-12" />
 
       {/* Projects Section */}
       <section 
@@ -508,15 +477,7 @@ export default function Home() {
       </section>
 
       {/* Section Divider */}
-      <div className="relative z-10 mt-12 tablet:mt-12 desktop:mt-12 mb-12 tablet:mb-12 desktop:mb-12">
-        <div 
-          className="h-[5px] rounded-full w-full"
-          style={{
-            background: 'linear-gradient(90deg, #87CEEB 0%, #FFFFFF 50%, #87CEEB 100%)',
-            boxShadow: '0 0 10px rgba(135, 206, 235, 0.6), 0 0 20px rgba(135, 206, 235, 0.4), 0 0 30px rgba(255, 255, 255, 0.3)',
-          }}
-        />
-      </div>
+      <SectionDivider className="mt-12 tablet:mt-12 desktop:mt-12 mb-12 tablet:mb-12 desktop:mb-12" />
 
       {/* Contact Section */}
       <section 
