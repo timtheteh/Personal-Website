@@ -146,7 +146,7 @@ export default function Home() {
   return (
     <main className="min-h-screen px-4 tablet:px-6 desktop:px-8 py-12 tablet:py-16 desktop:py-20">
       {/* Hero Section */}
-      <section className="scroll-mt-20 tablet:scroll-mt-[88px] flex flex-col desktop:flex-row desktop:justify-between gap-8 desktop:gap-12 items-center">
+      <section className="scroll-mt-20 tablet:scroll-mt-[88px] flex flex-col desktop:flex-row desktop:justify-between gap-8 desktop:gap-12 items-center relative z-10">
         {/* Column 1: Card - 60% on desktop */}
         <div className="w-full desktop:w-[80%]">
           <Card className="p-8">
@@ -181,12 +181,14 @@ export default function Home() {
       </section>
 
       {/* 3D Planet Transition Section */}
-      <section className="-mt-20 tablet:-mt-24 desktop:-mt-32 -mb-20 tablet:-mb-24 desktop:-mb-32">
-        <Planet3D />
+      <section className="-mt-20 tablet:-mt-24 desktop:-mt-32 -mb-20 tablet:-mb-24 desktop:-mb-32 relative z-0">
+        <div >
+          <Planet3D />
+        </div>
       </section>
 
       {/* About Section */}
-      <section id="about" className="scroll-mt-20 tablet:scroll-mt-[88px]">
+      <section id="about" className="scroll-mt-20 tablet:scroll-mt-[88px] relative z-10">
         <div className="flex flex-col desktop:flex-row desktop:justify-between gap-8 desktop:gap-12 items-center">
           {/* Column 1: Image (placeholder) - Desktop first, Mobile/Tablet second */}
           <div className="w-full desktop:w-[40%] flex items-center justify-center order-2 desktop:order-1">
