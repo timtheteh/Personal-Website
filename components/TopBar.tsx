@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { socialLinks } from "@/content/socialLinks";
 
 export default function TopBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -131,7 +132,7 @@ export default function TopBar() {
             {/* Social Icons - Desktop/Tablet Only */}
             <div className="hidden tablet:flex items-center gap-4">
               <a 
-                href="https://github.com" 
+                href={socialLinks.github}
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-white hover:text-brandcolour1 transition-colors"
@@ -142,7 +143,7 @@ export default function TopBar() {
                 </svg>
               </a>
               <a 
-                href="https://linkedin.com" 
+                href={socialLinks.linkedin}
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-white hover:text-brandcolour1 transition-colors"
@@ -153,7 +154,7 @@ export default function TopBar() {
                 </svg>
               </a>
               <a 
-                href="https://instagram.com" 
+                href={socialLinks.instagram}
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-white hover:text-brandcolour1 transition-colors"

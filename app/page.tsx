@@ -15,6 +15,7 @@ import { resumeItems } from '@/content/resume';
 import { carouselItems, carouselItems2, carouselItems3 } from '@/content/skills';
 import { blogTags } from '@/content/blog/tags';
 import { projectTags } from '@/content/projects/tags';
+import { socialLinks } from '@/content/socialLinks';
 
 // Dynamically import Planet3D with SSR disabled (WebGL requires browser)
 const Planet3D = dynamic(() => import('@/components/Planet3D'), {
@@ -554,7 +555,7 @@ export default function Home() {
                   {/* Social Icons */}
                   <div className="flex gap-4 order-2 tablet:order-1">
                     <a 
-                      href="https://github.com" 
+                      href={socialLinks.github}
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="text-white hover:text-brandcolour1 transition-colors"
@@ -565,7 +566,7 @@ export default function Home() {
                       </svg>
                     </a>
                     <a 
-                      href="https://linkedin.com" 
+                      href={socialLinks.linkedin}
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="text-white hover:text-brandcolour1 transition-colors"
@@ -576,7 +577,7 @@ export default function Home() {
                       </svg>
                     </a>
                     <a 
-                      href="https://instagram.com" 
+                      href={socialLinks.instagram}
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="text-white hover:text-brandcolour1 transition-colors"
