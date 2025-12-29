@@ -13,6 +13,7 @@ import dynamic from 'next/dynamic';
 import { resumeItems } from '@/content/resume';
 import { carouselItems, carouselItems2, carouselItems3 } from '@/content/skills';
 import { blogTags } from '@/content/blog/tags';
+import { projectTags } from '@/content/projects/tags';
 
 // Dynamically import Planet3D with SSR disabled (WebGL requires browser)
 const Planet3D = dynamic(() => import('@/components/Planet3D'), {
@@ -34,6 +35,15 @@ interface BlogPost {
   tags: string[];
 }
 
+interface Project {
+  slug: string;
+  title: string;
+  date: string;
+  description: string;
+  thumbnail: string;
+  tags?: string[];
+}
+
 export default function Home() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -42,6 +52,7 @@ export default function Home() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
+  const [projects, setProjects] = useState<Project[]>([]);
 
   const handleDownloadResume = () => {
     const link = document.createElement('a');
@@ -67,6 +78,19 @@ export default function Home() {
       })
       .catch((err) => {
         console.error('Error fetching blog posts:', err);
+      });
+  }, []);
+
+  // Fetch projects
+  useEffect(() => {
+    fetch('/api/projects')
+      .then((res) => res.json())
+      .then((data) => {
+        // Get only the first 4 projects (most recent)
+        setProjects(data.slice(0, 4));
+      })
+      .catch((err) => {
+        console.error('Error fetching projects:', err);
       });
   }, []);
 
@@ -319,6 +343,65 @@ export default function Home() {
               </>
             ) : (
               <div className="text-foreground/50">Loading blog posts...</div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Projects Section */}
+      <section id="projects" className="mt-8 tablet:mt-10 desktop:mt-12 scroll-mt-20 tablet:scroll-mt-[88px]">
+        <div className="flex flex-col desktop:flex-row desktop:justify-between gap-8 desktop:gap-12">
+          {/* Column 1: Card - 30% on desktop, first on mobile */}
+          <div className="w-full desktop:w-[30%] order-1 desktop:order-1">
+            <Card className="p-8">
+              <h2 className="text-3xl font-bold mb-4">Projects</h2>
+              <p className="text-foreground/70 mb-6">
+                Explore my portfolio of projects showcasing my work in web development, design, and technology.
+              </p>
+              <Button variant="brandcolour1" href="/projects">
+                View All Projects
+              </Button>
+            </Card>
+          </div>
+          
+          {/* Column 2: Projects Grid - 70% on desktop, second on mobile */}
+          <div className="w-full desktop:w-[70%] order-2 desktop:order-2">
+            {projects.length > 0 ? (
+              <>
+                {/* Desktop/Tablet: Grid layout (2x2) */}
+                <div className="hidden tablet:grid tablet:grid-cols-2 gap-6 auto-rows-fr">
+                  {projects.map((project) => (
+                    <GridCard
+                      key={project.slug}
+                      slug={project.slug}
+                      title={project.title}
+                      description={project.description}
+                      date={project.date}
+                      tags={project.tags}
+                      tagsMap={projectTags}
+                      hrefPrefix="/projects"
+                    />
+                  ))}
+                </div>
+                {/* Mobile: Row layout (horizontal scroll) */}
+                <div className="flex tablet:hidden gap-6 overflow-x-auto pb-4">
+                  {projects.map((project) => (
+                    <div key={project.slug} className="flex-shrink-0 w-[280px]">
+                      <GridCard
+                        slug={project.slug}
+                        title={project.title}
+                        description={project.description}
+                        date={project.date}
+                        tags={project.tags}
+                        tagsMap={projectTags}
+                        hrefPrefix="/projects"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </>
+            ) : (
+              <div className="text-foreground/50">Loading projects...</div>
             )}
           </div>
         </div>
