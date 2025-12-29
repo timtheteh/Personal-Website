@@ -87,7 +87,7 @@ export default function Pagination({
 
 
 
-  // Generate page numbers to display
+  // Generate page numbers to display (only shown on tablet/desktop)
   const getPageNumbers = () => {
     const pages: (number | string)[] = [];
     const maxVisible = 5;
@@ -168,8 +168,8 @@ export default function Pagination({
         </button>
       </div>
 
-      {/* Page Numbers */}
-      <div className="flex items-center gap-2">
+      {/* Page Numbers - Desktop/Tablet */}
+      <div className="hidden tablet:flex items-center gap-2">
         {getPageNumbers().map((page, index) => {
           if (page === '...') {
             return (
@@ -196,6 +196,13 @@ export default function Pagination({
             </button>
           );
         })}
+      </div>
+
+      {/* Mobile: Show current page / total pages */}
+      <div className="tablet:hidden flex items-center">
+        <span className="text-foreground text-sm font-mono">
+          {currentPage} / {totalPages === 0 ? 1 : totalPages}
+        </span>
       </div>
 
       {/* Right Navigation */}
