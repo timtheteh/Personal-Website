@@ -189,6 +189,17 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Section Divider */}
+      <div className="relative z-10 -mt-10 tablet:-mt-12 desktop:-mt-16 mb-12 tablet:mb-16 desktop:mb-12">
+        <div 
+          className="h-[5px] rounded-full w-full"
+          style={{
+            background: 'linear-gradient(90deg, #87CEEB 0%, #FFFFFF 50%, #87CEEB 100%)',
+            boxShadow: '0 0 10px rgba(135, 206, 235, 0.6), 0 0 20px rgba(135, 206, 235, 0.4), 0 0 30px rgba(255, 255, 255, 0.3)',
+          }}
+        />
+      </div>
+
       {/* About Section */}
       <section id="about" className="scroll-mt-20 tablet:scroll-mt-[88px] relative z-10">
         <div className="flex flex-col desktop:flex-row desktop:justify-between gap-8 desktop:gap-12 items-center">
@@ -215,6 +226,17 @@ export default function Home() {
       <section className="mt-8 tablet:mt-10 desktop:mt-12 mb-8 tablet:mb-10 desktop:mb-12">
         <Terminal />
       </section>
+
+      {/* Section Divider */}
+      <div className="relative z-10 mt-12 tablet:mt-12 desktop:mt-12 mb-12 tablet:mb-12 desktop:mb-12">
+        <div 
+          className="h-[5px] rounded-full w-full"
+          style={{
+            background: 'linear-gradient(90deg, #87CEEB 0%, #FFFFFF 50%, #87CEEB 100%)',
+            boxShadow: '0 0 10px rgba(135, 206, 235, 0.6), 0 0 20px rgba(135, 206, 235, 0.4), 0 0 30px rgba(255, 255, 255, 0.3)',
+          }}
+        />
+      </div>
 
       {/* Resume Section */}
       <section id="resume" className="scroll-mt-20 tablet:scroll-mt-[88px]">
@@ -295,6 +317,17 @@ export default function Home() {
         </div>
       </section>
 
+       {/* Section Divider */}
+       <div className="relative z-10 -mt-4 tablet:mt-2 desktop:mt-8 mb-12 tablet:mb-12 desktop:mb-12">
+        <div 
+          className="h-[5px] rounded-full w-full"
+          style={{
+            background: 'linear-gradient(90deg, #87CEEB 0%, #FFFFFF 50%, #87CEEB 100%)',
+            boxShadow: '0 0 10px rgba(135, 206, 235, 0.6), 0 0 20px rgba(135, 206, 235, 0.4), 0 0 30px rgba(255, 255, 255, 0.3)',
+          }}
+        />
+      </div>
+
       {/* Blog Section */}
       <section id="blog" className="mt-8 tablet:mt-10 desktop:mt-12 scroll-mt-20 tablet:scroll-mt-[88px]">
         <div className="flex flex-col desktop:flex-row desktop:justify-between gap-8 desktop:gap-12">
@@ -356,6 +389,17 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Section Divider */}
+      <div className="relative z-10 mt-12 tablet:mt-12 desktop:mt-12 mb-12 tablet:mb-12 desktop:mb-12">
+        <div 
+          className="h-[5px] rounded-full w-full"
+          style={{
+            background: 'linear-gradient(90deg, #87CEEB 0%, #FFFFFF 50%, #87CEEB 100%)',
+            boxShadow: '0 0 10px rgba(135, 206, 235, 0.6), 0 0 20px rgba(135, 206, 235, 0.4), 0 0 30px rgba(255, 255, 255, 0.3)',
+          }}
+        />
+      </div>
+
       {/* Projects Section */}
       <section id="projects" className="mt-8 tablet:mt-10 desktop:mt-12 scroll-mt-20 tablet:scroll-mt-[88px]">
         <div className="flex flex-col desktop:flex-row desktop:justify-between gap-8 desktop:gap-12">
@@ -416,6 +460,17 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Section Divider */}
+      <div className="relative z-10 mt-12 tablet:mt-12 desktop:mt-12 mb-12 tablet:mb-12 desktop:mb-12">
+        <div 
+          className="h-[5px] rounded-full w-full"
+          style={{
+            background: 'linear-gradient(90deg, #87CEEB 0%, #FFFFFF 50%, #87CEEB 100%)',
+            boxShadow: '0 0 10px rgba(135, 206, 235, 0.6), 0 0 20px rgba(135, 206, 235, 0.4), 0 0 30px rgba(255, 255, 255, 0.3)',
+          }}
+        />
+      </div>
 
       {/* Contact Section */}
       <section id="contact" className="mt-8 tablet:mt-10 desktop:mt-12 scroll-mt-20 tablet:scroll-mt-[88px]">
