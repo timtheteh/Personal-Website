@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Card from '@/components/Card';
 import GridCard from '@/components/GridCard';
+import TypewriterText from '@/components/TypewriterText';
 import { projectTags } from '@/content/projects/tags';
 
 interface Project {
@@ -213,7 +214,9 @@ export default function Projects() {
           {/* Column 2: Card Component */}
           <div className="w-full tablet:w-[60%] flex items-center justify-center tablet:pr-8 desktop:pr-8">
             <Card className="p-8">
-              <h1 className="text-5xl font-bold mb-4">Projects</h1>
+              <h1 className="text-5xl font-bold mb-4 text-white">
+                <TypewriterText texts={['Projects']} className="text-white" />
+              </h1>
               <p className="text-foreground/70">
                 Explore my portfolio of projects showcasing my work in web development, design, and technology.
               </p>

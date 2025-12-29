@@ -184,7 +184,9 @@ export default function Home() {
         {/* Column 1: Card - 60% on desktop */}
         <div className="w-full desktop:w-[80%]">
           <Card className="p-8">
-            <h1 className="text-4xl font-bold">Timothy</h1>
+            <h1 className="text-4xl font-bold text-white">
+              <TypewriterText texts={['Timothy']} className="text-white" />
+            </h1>
             <p className="mt-3 text-lg text-brandcolour2">
               <TypewriterText
                 texts={[
@@ -241,7 +243,9 @@ export default function Home() {
           {/* Column 2: Card - Desktop second, Mobile/Tablet first */}
           <div className="w-full desktop:w-[80%] order-1 desktop:order-2">
             <Card className="p-8">
-              <h2 className="text-3xl font-bold mb-4">About Me</h2>
+              <h2 className="text-3xl font-bold mb-4 text-white">
+                <TypewriterText texts={['About Me']} className="text-white" />
+              </h2>
               <p className="text-foreground/70">
                 This is the about section content. You can add your personal information, background, and story here.
               </p>
@@ -264,9 +268,11 @@ export default function Home() {
         data-section-id="resume"
         className={`scroll-mt-20 tablet:scroll-mt-[88px] fade-in-section ${visibleSections.has('resume') ? 'visible' : ''}`}
       >
-        <div className="flex flex-col tablet:flex-row tablet:items-center gap-4 tablet:gap-4 mb-8 tablet:mb-12">
-          <h2 className="text-5xl font-bold">Resume</h2>
-          <div className="flex flex-col tablet:flex-row gap-4 self-start w-full tablet:w-auto">
+        <div className="flex flex-col tablet:flex-row tablet:items-center tablet:justify-between gap-4 tablet:gap-4 mb-8 tablet:mb-12">
+          <h2 className="text-5xl font-bold text-white">
+            <TypewriterText texts={['Resume']} className="text-white" />
+          </h2>
+          <div className="flex flex-col tablet:flex-row gap-4 self-start w-full tablet:w-auto tablet:ml-auto">
             <Button 
               variant="brandcolour2" 
               showArrow={false}
@@ -354,7 +360,9 @@ export default function Home() {
           {/* Column 1: Card - 30% on desktop, first on mobile */}
           <div className="w-full desktop:w-[30%] order-1 desktop:order-1">
             <Card className="p-8">
-              <h2 className="text-3xl font-bold mb-4">Blog</h2>
+              <h2 className="text-3xl font-bold mb-4 text-white">
+                <TypewriterText texts={['Blog']} className="text-white" />
+              </h2>
               <p className="text-foreground/70 mb-6">
                 Check out my latest blog posts about web development, technology, and my experiences.
               </p>
@@ -422,7 +430,9 @@ export default function Home() {
           {/* Column 1: Card - 30% on desktop, first on mobile */}
           <div className="w-full desktop:w-[30%] order-1 desktop:order-1">
             <Card className="p-8">
-              <h2 className="text-3xl font-bold mb-4">Projects</h2>
+              <h2 className="text-3xl font-bold mb-4 text-white">
+                <TypewriterText texts={['Projects']} className="text-white" />
+              </h2>
               <p className="text-foreground/70 mb-6">
                 Explore my portfolio of projects showcasing my work in web development, design, and technology.
               </p>
@@ -486,7 +496,9 @@ export default function Home() {
         data-section-id="contact"
         className={`mt-8 tablet:mt-10 desktop:mt-12 scroll-mt-20 tablet:scroll-mt-[88px] fade-in-section ${visibleSections.has('contact') ? 'visible' : ''}`}
       >
-        <h2 className="text-5xl font-bold mb-8 tablet:mb-12">Contact</h2>
+        <h2 className="text-5xl font-bold mb-8 tablet:mb-12 text-white">
+          <TypewriterText texts={['Contact']} className="text-white" />
+        </h2>
         <div className="flex flex-col tablet:flex-row gap-8 tablet:gap-12 desktop:gap-12">
           {/* Column 1 / Row 2 (Mobile) - Contact Form/Info */}
           <div className="w-full tablet:w-1/2 order-2 tablet:order-1">
