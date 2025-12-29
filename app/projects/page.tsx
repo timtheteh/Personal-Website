@@ -29,7 +29,7 @@ export default function Projects() {
   const [sortOption, setSortOption] = useState<string>('date-desc');
   const [isSortOpen, setIsSortOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const [itemsPerPage, setItemsPerPage] = useState(12);
   const filterDropdownRefDesktop = useRef<HTMLDivElement>(null);
   const filterDropdownRefMobile = useRef<HTMLDivElement>(null);
   const sortDropdownRefDesktop = useRef<HTMLDivElement>(null);

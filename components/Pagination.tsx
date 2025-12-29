@@ -23,10 +23,10 @@ export default function Pagination({
   const itemsPerPageRef = useRef<HTMLDivElement>(null);
 
   const itemsPerPageOptions = [
-    { value: 10, label: '10 / page' },
-    { value: 20, label: '20 / page' },
-    { value: 30, label: '30 / page' },
-    { value: 50, label: '50 / page' },
+    { value: 12, label: '12 / page' },
+    { value: 24, label: '24 / page' },
+    { value: 36, label: '36 / page' },
+    { value: 48, label: '48 / page' },
   ];
 
   // Handle click outside to close dropdown
