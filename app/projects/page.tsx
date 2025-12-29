@@ -229,7 +229,7 @@ export default function Projects() {
           {/* Desktop/Tablet: Single row */}
           <div className="hidden tablet:flex items-center gap-4">
             {/* Search Bar */}
-            <div className="flex-1 relative">
+            <div className="flex-1 min-w-0 relative">
               <svg
                 className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-foreground/50"
                 fill="none"
@@ -260,89 +260,101 @@ export default function Projects() {
                 className={`w-full pl-12 py-3 rounded-lg bg-[#2C2C2C] border-2 border-white/30 text-foreground placeholder:text-foreground/50 focus:outline-none focus:border-brandcolour1 transition-[border-color] ${searchQuery ? 'pr-12' : 'pr-4'}`}
               />
             </div>
-            {/* Filter Button */}
-            <div className="relative" ref={filterDropdownRefDesktop}>
-              <button
-                onClick={() => {
-                  setIsFilterOpen(!isFilterOpen);
-                  if (!isFilterOpen) setIsSortOpen(false);
-                }}
-                className={`flex items-center gap-2 px-6 py-3 rounded-lg bg-[#2C2C2C] border-2 ${
-                  isFilterOpen
-                    ? 'border-brandcolour1'
-                    : 'border-white/30'
-                } text-foreground hover:border-brandcolour1 transition-[border-color]`}
-              >
-                Filter
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+            {/* Filter and Sort Buttons Container */}
+            <div className="flex gap-4 flex-shrink-0">
+              {/* Filter Button */}
+              <div className="relative w-[140px]" ref={filterDropdownRefDesktop}>
+                <button
+                  onClick={() => {
+                    setIsFilterOpen(!isFilterOpen);
+                    if (!isFilterOpen) setIsSortOpen(false);
+                  }}
+                  className={`flex items-center justify-between gap-2 w-full px-6 py-3 rounded-lg bg-[#2C2C2C] border-2 ${
+                    isFilterOpen
+                      ? 'border-brandcolour1'
+                      : 'border-white/30'
+                  } text-foreground hover:border-brandcolour1 transition-[border-color]`}
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
-                </svg>
-              </button>
-              
-              {/* Filter Dropdown */}
-              {isFilterOpen && (
-                <div className="absolute right-0 top-full mt-2 w-64 max-h-96 overflow-y-auto rounded-lg bg-[#2C2C2C] border-2 border-white/30 p-4 z-50 animate-bounce-in">
-                  <div className="flex flex-col gap-2">
-                    {/* Clear All Button */}
-                    <button
-                      onClick={clearAllTags}
-                      className="w-full px-3 py-2 rounded border border-white/30 text-foreground/70 hover:bg-white/5 hover:text-foreground transition-colors text-sm font-mono mb-1"
-                      disabled={selectedTags.size === 0}
-                    >
-                      Clear all
-                    </button>
-                    {Object.entries(projectTags)
-                      .filter(([tagSlug]) => availableTags.has(tagSlug))
-                      .map(([tagSlug, tag]) => (
-                        <button
-                          key={tagSlug}
-                          onClick={() => toggleTag(tagSlug)}
-                          className="flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-colors text-left"
-                        >
-                          <input
-                            type="checkbox"
-                            checked={selectedTags.has(tagSlug)}
-                            onChange={() => toggleTag(tagSlug)}
-                            className="w-4 h-4 rounded border-white/30 bg-transparent"
-                            style={{ accentColor: tag.color }}
-                          />
-                          <span
-                            className="text-sm font-mono"
-                            style={{ color: tag.color }}
+                  Filter
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                  </svg>
+                </button>
+                
+                {/* Filter Dropdown */}
+                {isFilterOpen && (
+                  <div className="absolute right-0 top-full mt-2 w-64 max-h-96 overflow-y-auto rounded-lg bg-[#2C2C2C] border-2 border-white/30 p-4 z-50 animate-bounce-in">
+                    <div className="flex flex-col gap-2">
+                      {/* Clear All Button */}
+                      <button
+                        onClick={clearAllTags}
+                        className="w-full px-3 py-2 rounded border border-white/30 text-foreground/70 hover:bg-white/5 hover:text-foreground transition-colors text-sm font-mono mb-1"
+                        disabled={selectedTags.size === 0}
+                      >
+                        Clear all
+                      </button>
+                      {Object.entries(projectTags)
+                        .filter(([tagSlug]) => availableTags.has(tagSlug))
+                        .map(([tagSlug, tag]) => (
+                          <button
+                            key={tagSlug}
+                            onClick={() => toggleTag(tagSlug)}
+                            className="flex items-center gap-2 px-3 py-2 rounded hover:bg-white/5 transition-colors text-left"
                           >
-                            {tag.name}
-                          </span>
-                        </button>
-                      ))}
+                            <input
+                              type="checkbox"
+                              checked={selectedTags.has(tagSlug)}
+                              onChange={() => toggleTag(tagSlug)}
+                              className="w-4 h-4 rounded border-white/30 bg-transparent"
+                              style={{ accentColor: tag.color }}
+                            />
+                            <span
+                              className="text-sm font-mono"
+                              style={{ color: tag.color }}
+                            >
+                              {tag.name}
+                            </span>
+                          </button>
+                        ))}
+                    </div>
                   </div>
-                </div>
-              )}
-            </div>
-            {/* Sort Button */}
-            <div className="relative" ref={sortDropdownRefDesktop}>
-              <button
-                onClick={() => {
-                  setIsSortOpen(!isSortOpen);
-                  if (!isSortOpen) setIsFilterOpen(false);
-                }}
-                className={`flex items-center gap-2 px-6 py-3 rounded-lg bg-[#2C2C2C] border-2 ${
-                  isSortOpen ? 'border-brandcolour1' : 'border-white/30'
-                } text-foreground hover:border-brandcolour1 transition-[border-color]`}
-              >
-                Sort
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+                )}
+              </div>
+              {/* Sort Button */}
+              <div className="relative w-[140px]" ref={sortDropdownRefDesktop}>
+                <button
+                  onClick={() => {
+                    setIsSortOpen(!isSortOpen);
+                    if (!isSortOpen) setIsFilterOpen(false);
+                  }}
+                  className={`flex items-center justify-between gap-2 w-full px-6 py-3 rounded-lg bg-[#2C2C2C] border-2 ${
+                    isSortOpen ? 'border-brandcolour1' : 'border-white/30'
+                  } text-foreground hover:border-brandcolour1 transition-[border-color]`}
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12" />
-                </svg>
+                Sort
+                <div className="flex flex-col">
+                  <svg
+                    className="w-3 h-3"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                  </svg>
+                  <svg
+                    className="w-3 h-3 -mt-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
               </button>
               
               {/* Sort Dropdown */}
@@ -428,6 +440,7 @@ export default function Projects() {
                   </div>
                 </div>
               )}
+              </div>
             </div>
           </div>
           
@@ -473,12 +486,13 @@ export default function Projects() {
                     setIsFilterOpen(!isFilterOpen);
                     if (!isFilterOpen) setIsSortOpen(false);
                   }}
-                  className={`flex items-center justify-center gap-2 w-full px-6 py-3 rounded-lg bg-[#2C2C2C] border-2 ${
+                  className={`flex items-center justify-between gap-2 w-full px-6 py-3 rounded-lg bg-[#2C2C2C] border-2 ${
                     isFilterOpen
                       ? 'border-brandcolour1'
                       : 'border-white/30'
                   } text-foreground hover:border-brandcolour1 transition-[border-color]`}
                 >
+                  Filter
                   <svg
                     className="w-5 h-5"
                     fill="none"
@@ -487,7 +501,6 @@ export default function Projects() {
                   >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
                   </svg>
-                  Filter
                 </button>
               </div>
               
@@ -535,19 +548,29 @@ export default function Projects() {
                     setIsSortOpen(!isSortOpen);
                     if (!isSortOpen) setIsFilterOpen(false);
                   }}
-                  className={`flex items-center justify-center gap-2 w-full px-6 py-3 rounded-lg bg-[#2C2C2C] border-2 ${
+                  className={`flex items-center justify-between gap-2 w-full px-6 py-3 rounded-lg bg-[#2C2C2C] border-2 ${
                     isSortOpen ? 'border-brandcolour1' : 'border-white/30'
                   } text-foreground hover:border-brandcolour1 transition-[border-color]`}
                 >
-                  <svg
-                    className="w-5 h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12" />
-                  </svg>
                   Sort
+                  <div className="flex flex-col">
+                    <svg
+                      className="w-3 h-3"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                    </svg>
+                    <svg
+                      className="w-3 h-3 -mt-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
                 </button>
               </div>
               

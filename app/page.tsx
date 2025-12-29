@@ -199,12 +199,12 @@ export default function Home() {
             <p className="mt-4 text-foreground/70 mb-6">This is a liquid-glass card component.</p>
             <div className="flex flex-col tablet:flex-row gap-4">
               <Button variant="brandcolour2" href="#contact" showArrow={false} className="w-full tablet:w-auto">
-                Contact me
-              </Button>
+              Contact me
+            </Button>
               <Button variant="brandcolour1" href="#about" className="w-full tablet:w-auto">
-                Learn more
-              </Button>
-            </div>
+              Learn more
+            </Button>
+          </div>
           </Card>
         </div>
         
@@ -219,7 +219,7 @@ export default function Home() {
       {/* 3D Planet Transition Section */}
       <section className="-mt-20 tablet:-mt-24 desktop:-mt-32 -mb-20 tablet:-mb-24 desktop:-mb-32 relative z-0">
         <div >
-          <Planet3D />
+        <Planet3D />
         </div>
       </section>
 
@@ -273,29 +273,29 @@ export default function Home() {
             <TypewriterText texts={['Resume']} className="text-white" />
           </h2>
           <div className="flex flex-col tablet:flex-row gap-4 self-start w-full tablet:w-auto tablet:ml-auto">
-            <Button 
-              variant="brandcolour2" 
-              showArrow={false}
-              onClick={handleDownloadResume}
+          <Button 
+            variant="brandcolour2" 
+            showArrow={false}
+            onClick={handleDownloadResume}
               className="w-full tablet:w-auto"
+          >
+            Download
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              Download
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M8 11V1M8 11L4 7M8 11L12 7M2 13H14"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </Button>
+              <path
+                d="M8 11V1M8 11L4 7M8 11L12 7M2 13H14"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </Button>
             <Button 
               variant="brandcolour1" 
               href="/projects"
