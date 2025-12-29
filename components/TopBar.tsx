@@ -106,11 +106,19 @@ export default function TopBar() {
             <Link
               href="/"
               onClick={(e) => {
+                // Close mobile menu if open
+                setIsMenuOpen(false);
+                
                 if (pathname === '/') {
                   e.preventDefault();
+                  // Clear any hash and scroll to top
+                  window.history.replaceState(null, '', '/');
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 } else {
-                  // When navigating from another page, scroll to top after navigation
+                  // When navigating from another page, ensure we go to home without hash
+                  e.preventDefault();
+                  router.push('/');
+                  // Scroll to top after navigation
                   setTimeout(() => {
                     window.scrollTo({ top: 0, behavior: 'auto' });
                   }, 100);
