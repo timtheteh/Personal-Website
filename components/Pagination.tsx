@@ -139,10 +139,66 @@ export default function Pagination({
           ? 'border-white/30'
           : 'border-white/30 hover:border-brandcolour1'
       } transition-[border-color]`}>
+        {/* Mobile: Text with arrow */}
         <button
           onClick={handlePrevious}
           disabled={currentPage === 1 || totalPages === 0}
-          className={`inline-flex items-center gap-2 px-3 py-2 rounded-lg font-mono text-sm w-full ${
+          className={`flex tablet:hidden items-center gap-2 px-3 py-2 rounded-lg font-mono text-sm w-full ${
+            currentPage === 1 || totalPages === 0
+              ? 'text-foreground/10 opacity-50'
+              : 'text-foreground'
+          } transition-colors`}
+          aria-label="Previous page"
+        >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M10 12L6 8L10 4"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+          Prev
+        </button>
+        {/* Tablet: Arrow only */}
+        <button
+          onClick={handlePrevious}
+          disabled={currentPage === 1 || totalPages === 0}
+          className={`hidden tablet:inline-flex desktop:hidden items-center justify-center p-2 rounded-lg font-mono text-sm w-full ${
+            currentPage === 1 || totalPages === 0
+              ? 'text-foreground/10 opacity-50'
+              : 'text-foreground'
+          } transition-colors`}
+          aria-label="Previous page"
+        >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M10 12L6 8L10 4"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+        {/* Desktop: Text with arrow */}
+        <button
+          onClick={handlePrevious}
+          disabled={currentPage === 1 || totalPages === 0}
+          className={`hidden desktop:inline-flex items-center gap-2 px-3 py-2 rounded-lg font-mono text-sm w-full ${
             currentPage === 1 || totalPages === 0
               ? 'text-foreground/10 opacity-50'
               : 'text-foreground'
@@ -168,8 +224,8 @@ export default function Pagination({
         </button>
       </div>
 
-      {/* Page Numbers - Desktop/Tablet */}
-      <div className="hidden tablet:flex items-center gap-2">
+      {/* Page Numbers - Desktop Only */}
+      <div className="hidden desktop:flex items-center gap-2">
         {getPageNumbers().map((page, index) => {
           if (page === '...') {
             return (
@@ -198,8 +254,8 @@ export default function Pagination({
         })}
       </div>
 
-      {/* Mobile: Show current page / total pages */}
-      <div className="tablet:hidden flex items-center">
+      {/* Mobile/Tablet: Show current page / total pages */}
+      <div className="flex desktop:hidden items-center">
         <span className="text-foreground text-sm font-mono">
           {currentPage} / {totalPages === 0 ? 1 : totalPages}
         </span>
@@ -211,10 +267,66 @@ export default function Pagination({
           ? 'border-white/30'
           : 'border-white/30 hover:border-brandcolour1'
       } transition-[border-color]`}>
+        {/* Mobile: Text with arrow */}
         <button
           onClick={handleNext}
           disabled={currentPage === totalPages || totalPages === 0}
-          className={`inline-flex items-center gap-2 px-3 py-2 rounded-lg font-mono text-sm w-full ${
+          className={`flex tablet:hidden items-center gap-2 px-3 py-2 rounded-lg font-mono text-sm w-full ${
+            currentPage === totalPages || totalPages === 0
+              ? 'text-foreground/10 opacity-50'
+              : 'text-foreground'
+          } transition-colors`}
+          aria-label="Next page"
+        >
+          Next
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M6 4L10 8L6 12"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+        {/* Tablet: Arrow only */}
+        <button
+          onClick={handleNext}
+          disabled={currentPage === totalPages || totalPages === 0}
+          className={`hidden tablet:inline-flex desktop:hidden items-center justify-center p-2 rounded-lg font-mono text-sm w-full ${
+            currentPage === totalPages || totalPages === 0
+              ? 'text-foreground/10 opacity-50'
+              : 'text-foreground'
+          } transition-colors`}
+          aria-label="Next page"
+        >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M6 4L10 8L6 12"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+        {/* Desktop: Text with arrow */}
+        <button
+          onClick={handleNext}
+          disabled={currentPage === totalPages || totalPages === 0}
+          className={`hidden desktop:inline-flex items-center gap-2 px-3 py-2 rounded-lg font-mono text-sm w-full ${
             currentPage === totalPages || totalPages === 0
               ? 'text-foreground/10 opacity-50'
               : 'text-foreground'
