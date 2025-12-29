@@ -55,6 +55,7 @@ export default function Home() {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [projects, setProjects] = useState<Project[]>([]);
+  const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
 
   const handleDownloadResume = () => {
     const link = document.createElement('a');
@@ -94,6 +95,35 @@ export default function Home() {
       .catch((err) => {
         console.error('Error fetching projects:', err);
       });
+  }, []);
+
+  // Intersection Observer for fade-in animations
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px',
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const sectionId = entry.target.getAttribute('data-section-id');
+          if (sectionId) {
+            setVisibleSections((prev) => new Set(prev).add(sectionId));
+            // Unobserve after it becomes visible to improve performance
+            observer.unobserve(entry.target);
+          }
+        }
+      });
+    }, observerOptions);
+
+    // Observe all sections with data-section-id attribute
+    const sections = document.querySelectorAll('[data-section-id]');
+    sections.forEach((section) => observer.observe(section));
+
+    return () => {
+      sections.forEach((section) => observer.unobserve(section));
+    };
   }, []);
 
   // Check if form is valid
@@ -201,7 +231,11 @@ export default function Home() {
       </div>
 
       {/* About Section */}
-      <section id="about" className="scroll-mt-20 tablet:scroll-mt-[88px] relative z-10">
+      <section 
+        id="about" 
+        data-section-id="about"
+        className={`scroll-mt-20 tablet:scroll-mt-[88px] relative z-10 fade-in-section ${visibleSections.has('about') ? 'visible' : ''}`}
+      >
         <div className="flex flex-col desktop:flex-row desktop:justify-between gap-8 desktop:gap-12 items-center">
           {/* Column 1: Image (placeholder) - Desktop first, Mobile/Tablet second */}
           <div className="w-full desktop:w-[40%] flex items-center justify-center order-2 desktop:order-1">
@@ -239,7 +273,11 @@ export default function Home() {
       </div>
 
       {/* Resume Section */}
-      <section id="resume" className="scroll-mt-20 tablet:scroll-mt-[88px]">
+      <section 
+        id="resume" 
+        data-section-id="resume"
+        className={`scroll-mt-20 tablet:scroll-mt-[88px] fade-in-section ${visibleSections.has('resume') ? 'visible' : ''}`}
+      >
         <div className="flex flex-col tablet:flex-row tablet:items-center gap-4 tablet:gap-4 mb-8 tablet:mb-12">
           <h2 className="text-5xl font-bold">Resume</h2>
           <div className="flex flex-col tablet:flex-row gap-4 self-start w-full tablet:w-auto">
@@ -329,7 +367,11 @@ export default function Home() {
       </div>
 
       {/* Blog Section */}
-      <section id="blog" className="mt-8 tablet:mt-10 desktop:mt-12 scroll-mt-20 tablet:scroll-mt-[88px]">
+      <section 
+        id="blog" 
+        data-section-id="blog"
+        className={`mt-8 tablet:mt-10 desktop:mt-12 scroll-mt-20 tablet:scroll-mt-[88px] fade-in-section ${visibleSections.has('blog') ? 'visible' : ''}`}
+      >
         <div className="flex flex-col desktop:flex-row desktop:justify-between gap-8 desktop:gap-12">
           {/* Column 1: Card - 30% on desktop, first on mobile */}
           <div className="w-full desktop:w-[30%] order-1 desktop:order-1">
@@ -401,7 +443,11 @@ export default function Home() {
       </div>
 
       {/* Projects Section */}
-      <section id="projects" className="mt-8 tablet:mt-10 desktop:mt-12 scroll-mt-20 tablet:scroll-mt-[88px]">
+      <section 
+        id="projects" 
+        data-section-id="projects"
+        className={`mt-8 tablet:mt-10 desktop:mt-12 scroll-mt-20 tablet:scroll-mt-[88px] fade-in-section ${visibleSections.has('projects') ? 'visible' : ''}`}
+      >
         <div className="flex flex-col desktop:flex-row desktop:justify-between gap-8 desktop:gap-12">
           {/* Column 1: Card - 30% on desktop, first on mobile */}
           <div className="w-full desktop:w-[30%] order-1 desktop:order-1">
@@ -473,7 +519,11 @@ export default function Home() {
       </div>
 
       {/* Contact Section */}
-      <section id="contact" className="mt-8 tablet:mt-10 desktop:mt-12 scroll-mt-20 tablet:scroll-mt-[88px]">
+      <section 
+        id="contact" 
+        data-section-id="contact"
+        className={`mt-8 tablet:mt-10 desktop:mt-12 scroll-mt-20 tablet:scroll-mt-[88px] fade-in-section ${visibleSections.has('contact') ? 'visible' : ''}`}
+      >
         <h2 className="text-5xl font-bold mb-8 tablet:mb-12">Contact</h2>
         <div className="flex flex-col tablet:flex-row gap-8 tablet:gap-12 desktop:gap-12">
           {/* Column 1 / Row 2 (Mobile) - Contact Form/Info */}
