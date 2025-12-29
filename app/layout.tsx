@@ -17,7 +17,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Personal Website",
+  title: "Timothy Teh",
   description: "Personal portfolio and blog",
 };
 
