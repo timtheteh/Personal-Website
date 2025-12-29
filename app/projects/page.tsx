@@ -29,6 +29,11 @@ export default function Projects() {
   const sortDropdownRefDesktop = useRef<HTMLDivElement>(null);
   const sortDropdownRefMobile = useRef<HTMLDivElement>(null);
 
+  // Scroll to top on mount
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }, []);
+
   useEffect(() => {
     // Fetch projects from API route
     fetch('/api/projects')
