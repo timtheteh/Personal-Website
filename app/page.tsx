@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Card from '@/components/Card';
@@ -13,7 +13,8 @@ import Terminal from '@/components/Terminal';
 import SectionDivider from '@/components/SectionDivider';
 import dynamic from 'next/dynamic';
 import { resumeItems } from '@/content/resume';
-import { carouselItems, carouselItems2, carouselItems3 } from '@/content/skills';
+import { carouselItems, carouselItems2, carouselItems3, SkillItem } from '@/content/skills';
+import type { CarouselItem } from '@/components/Carousel';
 import { blogTags } from '@/content/blog/tags';
 import { projectTags } from '@/content/projects/tags';
 import { socialLinks } from '@/content/socialLinks';
@@ -61,6 +62,30 @@ export default function Home() {
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [projects, setProjects] = useState<Project[]>([]);
   const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
+
+  // Helper function to convert SkillItem[] to CarouselItem[]
+  const convertSkillsToCarouselItems = (skills: SkillItem[]): CarouselItem[] => {
+    return skills.map((skill) => ({
+      id: skill.id,
+      text: skill.text,
+      icon: skill.icon.startsWith('/') ? (
+        <Image
+          src={skill.icon}
+          alt={skill.text}
+          width={48}
+          height={48}
+          className="object-contain"
+        />
+      ) : (
+        <span>{skill.icon}</span>
+      ),
+    }));
+  };
+
+  // Convert skill arrays to carousel format
+  const carouselItemsConverted = useMemo(() => convertSkillsToCarouselItems(carouselItems), []);
+  const carouselItems2Converted = useMemo(() => convertSkillsToCarouselItems(carouselItems2), []);
+  const carouselItems3Converted = useMemo(() => convertSkillsToCarouselItems(carouselItems3), []);
 
   const handleDownloadResume = () => {
     const link = document.createElement('a');
@@ -320,7 +345,7 @@ export default function Home() {
         {/* Skills Carousel */}
         <div className="mt-0 desktop:mt-4">
           <Carousel 
-            items={carouselItems}
+            items={carouselItemsConverted}
             itemSize={{ mobile: 120, tablet: 160, desktop: 160 }}
             gap={20}
             speed={80}
@@ -333,7 +358,7 @@ export default function Home() {
         {/* Second Carousel - opposite direction */}
         <div className="-mt-32 tablet:-mt-32 desktop:-mt-32">
           <Carousel 
-            items={carouselItems2}
+            items={carouselItems2Converted}
             itemSize={{ mobile: 120, tablet: 160, desktop: 160 }}
             gap={20}
             speed={80}
@@ -346,7 +371,7 @@ export default function Home() {
         {/* Third Carousel - opposite direction */}
         <div className="-mt-32 tablet:-mt-32 desktop:-mt-32">
           <Carousel 
-            items={carouselItems3}
+            items={carouselItems3Converted}
             itemSize={{ mobile: 120, tablet: 160, desktop: 160 }}
             gap={20}
             speed={80}
