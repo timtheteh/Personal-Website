@@ -72,12 +72,12 @@ export default function Home() {
         <Image
           src={skill.icon}
           alt={skill.text}
-          width={48}
-          height={48}
-          className="object-contain"
+          width={56}
+          height={56}
+          className="object-contain w-full h-full p-5"
         />
       ) : (
-        <span>{skill.icon}</span>
+        <span className="text-3xl tablet:text-4xl">{skill.icon}</span>
       ),
     }));
   };
