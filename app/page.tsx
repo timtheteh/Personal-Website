@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import Card from '@/components/Card';
 import GridCard from '@/components/GridCard';
 import TypewriterText from '@/components/TypewriterText';
@@ -16,6 +17,7 @@ import { carouselItems, carouselItems2, carouselItems3 } from '@/content/skills'
 import { blogTags } from '@/content/blog/tags';
 import { projectTags } from '@/content/projects/tags';
 import { socialLinks } from '@/content/socialLinks';
+import { heroTypewriterTexts, heroDescription } from '@/content/heroTexts';
 
 // Dynamically import Planet3D with SSR disabled (WebGL requires browser)
 const Planet3D = dynamic(() => import('@/components/Planet3D'), {
@@ -189,14 +191,10 @@ export default function Home() {
             </h1>
             <p className="mt-3 text-lg text-brandcolour2">
               <TypewriterText
-                texts={[
-                  'SOFTWARE ENGINEER',
-                  'FULL-STACK ENGINEER',
-                  'SOFTWARE ARCHITECT',
-                ]}
+                texts={heroTypewriterTexts}
               />
             </p>
-            <p className="mt-4 text-foreground/70 mb-6">This is a liquid-glass card component.</p>
+            <p className="mt-4 text-foreground/70 mb-6 ">{heroDescription}</p>
             <div className="flex flex-col tablet:flex-row gap-4">
               <Button variant="brandcolour2" href="#contact" showArrow={false} className="w-full tablet:w-auto">
               Contact me
@@ -208,10 +206,16 @@ export default function Home() {
           </Card>
         </div>
         
-        {/* Column 2: Image (placeholder) - 40% on desktop */}
+        {/* Column 2: Image - 40% on desktop */}
         <div className="w-full desktop:w-[40%] flex items-center justify-center">
-          <div className="w-full aspect-square max-w-[400px] rounded-2xl bg-white/10 border-2 border-dashed border-white/30 flex items-center justify-center">
-            <span className="text-foreground/50">Image placeholder</span>
+          <div className="w-full aspect-square max-w-[400px] rounded-2xl overflow-hidden relative border-4 border-brandcolour2">
+            <Image
+              src="/assets/images/hero_image.jpg"
+              alt="Timothy Teh"
+              fill
+              className="object-cover"
+              priority
+            />
           </div>
         </div>
       </section>
@@ -233,10 +237,15 @@ export default function Home() {
         className={`scroll-mt-20 tablet:scroll-mt-[88px] relative z-10 fade-in-section ${visibleSections.has('about') ? 'visible' : ''}`}
       >
         <div className="flex flex-col desktop:flex-row desktop:justify-between gap-8 desktop:gap-12 items-center">
-          {/* Column 1: Image (placeholder) - Desktop first, Mobile/Tablet second */}
+          {/* Column 1: Image - Desktop first, Mobile/Tablet second */}
           <div className="w-full desktop:w-[40%] flex items-center justify-center order-2 desktop:order-1">
-            <div className="w-full aspect-square max-w-[400px] rounded-2xl bg-white/10 border-2 border-dashed border-white/30 flex items-center justify-center">
-              <span className="text-foreground/50">Image placeholder</span>
+            <div className="w-full aspect-square max-w-[400px] rounded-2xl overflow-hidden relative border-4 border-brandcolour2">
+              <Image
+                src="/assets/images/about_image.jpg"
+                alt="About Timothy Teh"
+                fill
+                className="object-cover"
+              />
             </div>
           </div>
           
