@@ -666,13 +666,21 @@ export default function Home() {
           </div>
 
           {/* Column 2 / Row 1 (Mobile) - Card Component */}
-          <div className="w-full tablet:w-1/2 order-1 tablet:order-2 flex items-center justify-center">
-            <Card className="p-8">
-              <h3 className="text-3xl font-bold mb-4">Let&apos;s Connect</h3>
-              <p className="text-foreground/70">
-                Feel free to reach out if you have any questions, opportunities, or just want to chat about technology!
-              </p>
-            </Card>
+          <div className="w-full tablet:w-1/2 order-1 tablet:order-2 flex flex-col items-center justify-center">
+            <div className="w-full flex flex-col items-center">
+              <Card className="p-8">
+                <h3 className="text-3xl font-bold mb-4">Let&apos;s Connect</h3>
+                <p className="text-foreground/70">
+                  Feel free to reach out if you have any questions, opportunities, or just want to chat about technology!
+                </p>
+              </Card>
+              {/* LinkedIn Badge - Desktop/Tablet only */}
+              <div className="hidden tablet:flex mt-6 justify-center">
+                <div className="badge-base LI-profile-badge" data-locale="en_US" data-size="large" data-theme="dark" data-type="HORIZONTAL" data-vanity="timothy-teh" data-version="v1">
+                  {/* <a className="badge-base__link LI-simple-link" href="https://sg.linkedin.com/in/timothy-teh?trk=profile-badge">Timothy T.</a> */}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

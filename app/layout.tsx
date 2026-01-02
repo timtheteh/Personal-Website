@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import TopBar from "@/components/TopBar";
 import GridBackground from "@/components/GridBackground";
@@ -37,6 +38,7 @@ export default function RootLayout({
         <div className="mx-auto max-w-[1440px]">
           {children}
         </div>
+        <Script src="https://platform.linkedin.com/badges/js/profile.js" strategy="lazyOnload" />
       </body>
     </html>
   );
