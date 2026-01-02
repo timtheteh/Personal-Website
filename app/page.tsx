@@ -18,6 +18,7 @@ import { blogTags } from '@/content/blog/tags';
 import { projectTags } from '@/content/projects/tags';
 import { socialLinks } from '@/content/socialLinks';
 import { heroTypewriterTexts, heroDescription } from '@/content/heroTexts';
+import { aboutDescription } from '@/content/aboutText';
 
 // Dynamically import Planet3D with SSR disabled (WebGL requires browser)
 const Planet3D = dynamic(() => import('@/components/Planet3D'), {
@@ -256,7 +257,7 @@ export default function Home() {
                 <TypewriterText texts={['About Me']} className="text-white" />
               </h2>
               <p className="text-foreground/70">
-                This is the about section content. You can add your personal information, background, and story here.
+                {aboutDescription}
               </p>
             </Card>
           </div>
