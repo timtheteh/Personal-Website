@@ -281,7 +281,7 @@ export default function Home() {
               <h2 className="text-3xl font-bold mb-4 text-white">
                 <TypewriterText texts={['About Me']} className="text-white" />
               </h2>
-              <p className="text-foreground/70">
+              <p className="text-foreground/70 whitespace-pre-line">
                 {aboutDescription}
               </p>
             </Card>
