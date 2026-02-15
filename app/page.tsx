@@ -20,6 +20,8 @@ import { projectTags } from '@/content/projects/tags';
 import { socialLinks } from '@/content/socialLinks';
 import { heroTypewriterTexts, heroDescription } from '@/content/heroTexts';
 import { aboutDescription } from '@/content/aboutText';
+import { blogDescription } from '@/content/blogText';
+import { projectsDescription } from '@/content/projectsText';
 
 // Dynamically import Planet3D with SSR disabled (WebGL requires browser)
 const Planet3D = dynamic(() => import('@/components/Planet3D'), {
@@ -399,7 +401,7 @@ export default function Home() {
                 <TypewriterText texts={['Blog']} className="text-white" />
               </h2>
               <p className="text-foreground/70 mb-6">
-                Check out my latest blog posts about web development, technology, and my experiences.
+                {blogDescription}
               </p>
               <Button variant="brandcolour1" href="/blog">
                 View All Posts
@@ -469,7 +471,7 @@ export default function Home() {
                 <TypewriterText texts={['Projects']} className="text-white" />
               </h2>
               <p className="text-foreground/70 mb-6">
-                Explore my portfolio of projects showcasing my work in web development, design, and technology.
+                {projectsDescription}
               </p>
               <Button variant="brandcolour1" href="/projects">
                 View All Projects

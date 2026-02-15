@@ -1,3 +1,5 @@
-export const aboutDescription = `I'm passionate about building reliable, scalable, end-to-end software systems for modern web and mobile applications. I aspire to grow into a versatile, multi-domain software engineer with strong foundations across both product and platform engineering.
+export const aboutDescription = `I love building software that works beautifully from end to end — from intuitive frontends to robust, scalable backend systems. As a full-stack developer, I enjoy connecting product thinking with solid engineering foundations to create systems that are reliable, maintainable, and built to scale.
 
-In my spare time, I continuously sharpen my skills by solving LeetCode problems, researching software engineering topics, building meaningful projects, and writing technical blog posts on my website. My key interests include Full-Stack Development, Data Engineering, Artificial Intelligence, and Cybersecurity.`
+Outside of work, I’m constantly exploring and experimenting. Whether it’s solving LeetCode problems, diving into system design concepts, building side projects, or writing technical blog posts, I’m always sharpening my craft. 
+
+For me, software engineering isn’t just a career path — it’s a craft I’m committed to improving every day.`
