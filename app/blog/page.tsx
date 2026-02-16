@@ -2,11 +2,13 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import Card from '@/components/Card';
 import GridCard from '@/components/GridCard';
 import TypewriterText from '@/components/TypewriterText';
 import Pagination from '@/components/Pagination';
 import { blogTags } from '@/content/blog/tags';
+import { blogDescriptionInBlogPage } from '@/content/blogText';
 
 interface BlogPost {
   slug: string;
@@ -217,10 +219,15 @@ export default function Blog() {
         
         {/* Header Section - Two columns on desktop/tablet, one column on mobile */}
         <div className="flex flex-col tablet:flex-row gap-8 tablet:gap-12 desktop:gap-12 mb-8 tablet:mb-12">
-          {/* Column 1: Image (placeholder) - Desktop/Tablet only */}
+          {/* Column 1: Image - Desktop/Tablet only */}
           <div className="w-full tablet:w-[40%] hidden tablet:flex items-center justify-center">
-            <div className="w-full aspect-square max-w-[400px] rounded-2xl bg-white/10 border-2 border-dashed border-white/30 flex items-center justify-center">
-              <span className="text-foreground/50">Image placeholder</span>
+            <div className="w-full aspect-square max-w-[400px] rounded-2xl overflow-hidden relative">
+              <Image
+                src="/assets/images/blogsPageImagePlaceholder.jpg"
+                alt="Blog"
+                fill
+                className="object-cover"
+              />
             </div>
           </div>
           
@@ -231,7 +238,7 @@ export default function Blog() {
                 <TypewriterText texts={['Blog']} className="text-white" />
               </h1>
               <p className="text-foreground/70">
-                Welcome to my blog! Here you&apos;ll find articles about web development, technology, and my experiences.
+                {blogDescriptionInBlogPage}
               </p>
             </Card>
           </div>
@@ -691,6 +698,7 @@ export default function Blog() {
               tagsMap={blogTags}
               hrefPrefix="/blog"
               readingTime={post.readingTime}
+              thumbnail={post.thumbnail}
             />
           ))}
         </div>

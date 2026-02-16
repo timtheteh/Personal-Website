@@ -20,5 +20,6 @@ export const blogTags: Record<string, Tag> = {
   'frontend': { name: 'Frontend', color: '#FF6B9D' },
   'backend': { name: 'Backend', color: '#C44569' },
   'fullstack': { name: 'Full Stack', color: '#F8B500' },
+  'coming-soon': { name: 'Coming Soon', color: '#FF8C00' },
 };
 

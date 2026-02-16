@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface Tag {
   name: string;
@@ -14,6 +15,7 @@ interface GridCardProps {
   tagsMap: Record<string, Tag>;
   hrefPrefix: string;
   readingTime?: number;
+  thumbnail?: string;
 }
 
 export default function GridCard({
@@ -25,6 +27,7 @@ export default function GridCard({
   tagsMap,
   hrefPrefix,
   readingTime,
+  thumbnail,
 }: GridCardProps) {
   return (
     <Link
@@ -32,13 +35,22 @@ export default function GridCard({
       className="flex flex-col rounded-2xl border-2 border-white/30 overflow-hidden hover:border-brandcolour1 transition-[border-color] cursor-pointer no-underline hover:no-underline text-inherit hover:text-inherit h-full"
     >
       {/* Thumbnail */}
-      <div className="w-full aspect-video bg-gradient-to-br from-brandcolour1/20 to-brandcolour2/20 flex items-center justify-center flex-shrink-0">
-        <span className="text-foreground/50 text-sm">Thumbnail</span>
+      <div className="w-full aspect-video bg-gradient-to-br from-brandcolour1/20 to-brandcolour2/20 flex items-center justify-center flex-shrink-0 relative overflow-hidden">
+        {thumbnail ? (
+          <Image
+            src={thumbnail}
+            alt={title}
+            fill
+            className="object-cover"
+          />
+        ) : (
+          <span className="text-foreground/50 text-sm">Thumbnail</span>
+        )}
       </div>
       {/* Description Section */}
       <div className="p-4 flex flex-col gap-2 bg-[#2C2C2C] flex-1 min-h-0">
-        <h2 className="text-xl font-semibold text-brandcolour2 line-clamp-2 leading-tight">{title}</h2>
-        <p className="text-sm text-foreground/70 line-clamp-3 leading-snug">{description}</p>
+        <h2 className="text-xl font-semibold text-brandcolour2 line-clamp-2 leading-tight min-h-[3rem]">{title}</h2>
+        <p className="text-sm text-foreground/70 line-clamp-3 leading-snug min-h-[3.75rem]">{description}</p>
         <span className="text-xs text-brandcolour1 font-mono mt-auto flex-shrink-0">{date}</span>
         {/* Tags and Reading Time */}
         <div className="flex flex-wrap items-center justify-between gap-2 mt-2 overflow-hidden max-h-8">

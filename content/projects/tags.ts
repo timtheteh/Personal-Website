@@ -20,5 +20,6 @@ export const projectTags: Record<string, Tag> = {
   'api': { name: 'API', color: '#00B300' },
   'database': { name: 'Database', color: '#4ECDC4' },
   'cloud': { name: 'Cloud', color: '#80FF00' },
+  'coming-soon': { name: 'Coming Soon', color: '#FF8C00' },
 };
 

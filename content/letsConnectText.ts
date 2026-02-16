@@ -1,0 +1,1 @@
+export const letsConnectDescription = "I’m open to full-stack engineering roles, technical collaborations, and building scalable software solutions. I also offer structured programming tutoring. If you’re interested in working together, feel free to reach out!";

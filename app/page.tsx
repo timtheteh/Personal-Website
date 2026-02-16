@@ -22,6 +22,7 @@ import { heroTypewriterTexts, heroDescription } from '@/content/heroTexts';
 import { aboutDescription } from '@/content/aboutText';
 import { blogDescription } from '@/content/blogText';
 import { projectsDescription } from '@/content/projectsText';
+import { letsConnectDescription } from '@/content/letsConnectText';
 
 // Dynamically import Planet3D with SSR disabled (WebGL requires browser)
 const Planet3D = dynamic(() => import('@/components/Planet3D'), {
@@ -387,76 +388,6 @@ export default function Home() {
       {/* Section Divider */}
       <SectionDivider className="-mt-4 tablet:mt-2 desktop:mt-8 mb-12 tablet:mb-12 desktop:mb-12" />
 
-      {/* Blog Section */}
-      <section 
-        id="blog" 
-        data-section-id="blog"
-        className={`mt-8 tablet:mt-10 desktop:mt-12 scroll-mt-20 tablet:scroll-mt-[88px] fade-in-section ${visibleSections.has('blog') ? 'visible' : ''}`}
-      >
-        <div className="flex flex-col desktop:flex-row desktop:justify-between gap-8 desktop:gap-12">
-          {/* Column 1: Card - 30% on desktop, first on mobile */}
-          <div className="w-full desktop:w-[30%] order-1 desktop:order-1">
-            <Card className="p-8">
-              <h2 className="text-3xl font-bold mb-4 text-white">
-                <TypewriterText texts={['Blog']} className="text-white" />
-              </h2>
-              <p className="text-foreground/70 mb-6">
-                {blogDescription}
-              </p>
-              <Button variant="brandcolour1" href="/blog">
-                View All Posts
-              </Button>
-            </Card>
-          </div>
-          
-          {/* Column 2: Blog Posts Grid - 70% on desktop, second on mobile */}
-          <div className="w-full desktop:w-[70%] order-2 desktop:order-2">
-            {blogPosts.length > 0 ? (
-              <>
-                {/* Desktop/Tablet: Grid layout (2x2) */}
-                <div className="hidden tablet:grid tablet:grid-cols-2 gap-6 auto-rows-fr">
-                  {blogPosts.map((post) => (
-                    <GridCard
-                      key={post.slug}
-                      slug={post.slug}
-                      title={post.title}
-                      description={post.description}
-                      date={post.date}
-                      tags={post.tags}
-                      tagsMap={blogTags}
-                      hrefPrefix="/blog"
-                      readingTime={post.readingTime}
-                    />
-                  ))}
-                </div>
-                {/* Mobile: Row layout (horizontal scroll) */}
-                <div className="flex tablet:hidden gap-6 overflow-x-auto pb-4">
-                  {blogPosts.map((post) => (
-                    <div key={post.slug} className="flex-shrink-0 w-[280px]">
-                      <GridCard
-                        slug={post.slug}
-                        title={post.title}
-                        description={post.description}
-                        date={post.date}
-                        tags={post.tags}
-                        tagsMap={blogTags}
-                        hrefPrefix="/blog"
-                        readingTime={post.readingTime}
-                      />
-                    </div>
-                  ))}
-                </div>
-              </>
-            ) : (
-              <div className="text-foreground/50">Loading blog posts...</div>
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* Section Divider */}
-      <SectionDivider className="mt-12 tablet:mt-12 desktop:mt-12 mb-12 tablet:mb-12 desktop:mb-12" />
-
       {/* Projects Section */}
       <section 
         id="projects" 
@@ -496,6 +427,7 @@ export default function Home() {
                       tagsMap={projectTags}
                       hrefPrefix="/projects"
                       readingTime={project.readingTime}
+                      thumbnail={project.thumbnail}
                     />
                   ))}
                 </div>
@@ -512,6 +444,7 @@ export default function Home() {
                         tagsMap={projectTags}
                         hrefPrefix="/projects"
                         readingTime={project.readingTime}
+                        thumbnail={project.thumbnail}
                       />
                     </div>
                   ))}
@@ -519,6 +452,74 @@ export default function Home() {
               </>
             ) : (
               <div className="text-foreground/50">Loading projects...</div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Section Divider */}
+      <SectionDivider className="mt-12 tablet:mt-12 desktop:mt-12 mb-12 tablet:mb-12 desktop:mb-12" />
+
+      {/* Blog Section */}
+      <section 
+        id="blog" 
+        data-section-id="blog"
+        className={`mt-8 tablet:mt-10 desktop:mt-12 scroll-mt-20 tablet:scroll-mt-[88px] fade-in-section ${visibleSections.has('blog') ? 'visible' : ''}`}
+      >
+        <div className="flex flex-col desktop:flex-row desktop:justify-between gap-8 desktop:gap-12">
+          <div className="w-full desktop:w-[30%] order-1 desktop:order-1">
+            <Card className="p-8">
+              <h2 className="text-3xl font-bold mb-4 text-white">
+                <TypewriterText texts={['Blog']} className="text-white" />
+              </h2>
+              <p className="text-foreground/70 mb-6">
+                {blogDescription}
+              </p>
+              <Button variant="brandcolour1" href="/blog">
+                View All Posts
+              </Button>
+            </Card>
+          </div>
+          
+          <div className="w-full desktop:w-[70%] order-2 desktop:order-2">
+            {blogPosts.length > 0 ? (
+              <>
+                <div className="hidden tablet:grid tablet:grid-cols-2 gap-6 auto-rows-fr">
+                  {blogPosts.map((post) => (
+                    <GridCard
+                      key={post.slug}
+                      slug={post.slug}
+                      title={post.title}
+                      description={post.description}
+                      date={post.date}
+                      tags={post.tags}
+                      tagsMap={blogTags}
+                      hrefPrefix="/blog"
+                      readingTime={post.readingTime}
+                      thumbnail={post.thumbnail}
+                    />
+                  ))}
+                </div>
+                <div className="flex tablet:hidden gap-6 overflow-x-auto pb-4">
+                  {blogPosts.map((post) => (
+                    <div key={post.slug} className="flex-shrink-0 w-[280px]">
+                      <GridCard
+                        slug={post.slug}
+                        title={post.title}
+                        description={post.description}
+                        date={post.date}
+                        tags={post.tags}
+                        tagsMap={blogTags}
+                        hrefPrefix="/blog"
+                        readingTime={post.readingTime}
+                        thumbnail={post.thumbnail}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </>
+            ) : (
+              <div className="text-foreground/50">Loading blog posts...</div>
             )}
           </div>
         </div>
@@ -673,7 +674,7 @@ export default function Home() {
               <Card className="p-8">
                 <h3 className="text-3xl font-bold mb-4">Let&apos;s Connect</h3>
                 <p className="text-foreground/70">
-                  Feel free to reach out if you have any questions, opportunities, or just want to chat about technology!
+                  {letsConnectDescription}
                 </p>
               </Card>
               {/* LinkedIn Badge - Desktop/Tablet only */}

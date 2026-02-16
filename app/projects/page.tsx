@@ -2,11 +2,13 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import Card from '@/components/Card';
 import GridCard from '@/components/GridCard';
 import TypewriterText from '@/components/TypewriterText';
 import Pagination from '@/components/Pagination';
 import { projectTags } from '@/content/projects/tags';
+import { projectsDescriptionInProjectsPage } from '@/content/projectsText';
 
 interface Project {
   slug: string;
@@ -217,10 +219,15 @@ export default function Projects() {
         
         {/* Header Section - Two columns on desktop/tablet, one column on mobile */}
         <div className="flex flex-col tablet:flex-row gap-8 tablet:gap-12 desktop:gap-12 mb-8 tablet:mb-12">
-          {/* Column 1: Image (placeholder) - Desktop/Tablet only */}
+          {/* Column 1: Image - Desktop/Tablet only */}
           <div className="w-full tablet:w-[40%] hidden tablet:flex items-center justify-center">
-            <div className="w-full aspect-square max-w-[400px] rounded-2xl bg-white/10 border-2 border-dashed border-white/30 flex items-center justify-center">
-              <span className="text-foreground/50">Image placeholder</span>
+            <div className="w-full aspect-square max-w-[400px] rounded-2xl overflow-hidden relative">
+              <Image
+                src="/assets/images/projectsPageImagePlaceholder.jpeg"
+                alt="Projects"
+                fill
+                className="object-cover object-[40%_center]"
+              />
             </div>
           </div>
           
@@ -231,7 +238,7 @@ export default function Projects() {
                 <TypewriterText texts={['Projects']} className="text-white" />
               </h1>
               <p className="text-foreground/70">
-                Explore my portfolio of projects showcasing my work in web development, design, and technology.
+                {projectsDescriptionInProjectsPage}
               </p>
             </Card>
           </div>
@@ -687,6 +694,7 @@ export default function Projects() {
               tagsMap={projectTags}
               hrefPrefix="/projects"
               readingTime={project.readingTime}
+              thumbnail={project.thumbnail}
             />
           ))}
         </div>
